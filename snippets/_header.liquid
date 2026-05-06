@@ -1,6 +1,9 @@
 {% assign header_menu_html = site.settings.header_menu_html | presence %}
 
-<header class="sticky top-0 z-10 bg-primary text-primary-content">
+{% assign matrix_active_mode = site.settings.active_mode | presence %}
+{% unless matrix_active_mode %}{% assign matrix_active_mode = 'products' %}{% endunless %}
+
+<header class="sticky top-0 z-10 bg-[var(--matrix-primary)] text-white">
   <div class="navbar container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="navbar-start">
       {% if header_menu_html %}
@@ -44,6 +47,13 @@
 
     </div>
     <div class="navbar-center hidden lg:flex">
+      <div class="w-full max-w-xl px-6">
+        <div class="matrix-search matrix-search--header">
+          {% render 'search_block' %}
+        </div>
+      </div>
+    </div>
+    <div class="navbar-center hidden xl:flex">
       <ul class="menu menu-horizontal px-1">
         {% if header_menu_html %}
           {{ header_menu_html }}

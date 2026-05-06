@@ -1,0 +1,42 @@
+{% assign matrix_active_mode = site.settings.active_mode | presence %}
+{% unless matrix_active_mode %}{% assign matrix_active_mode = 'products' %}{% endunless %}
+
+<div class="md:flex md:space-x-6">
+  <aside class="md:w-1/4 min-w-64 mb-6 md:mb-0">
+    <div class="glass-card p-6 rounded-2xl sticky top-16 z-50">
+      <div class="flex items-center justify-between gap-2 mb-4">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100">{{ 'templates.index.category_nav' | t }}</h2>
+        <span class="text-xs px-2 py-1 rounded-full bg-[color-mix(in_oklab,var(--matrix-primary)_12%,transparent)] text-[var(--matrix-primary)]">
+          {{ matrix_active_mode | upcase }}
+        </span>
+      </div>
+
+      <div class="relative mb-5">
+        {% render 'search_block' %}
+      </div>
+
+      {% comment %} Tag filter (client-side, optional) {% endcomment %}
+      {% render 'matrix/index/sidebar_filters' %}
+    </div>
+  </aside>
+
+  <section class="md:w-3/4">
+    {% paginate_tag pages, per: 24 %}
+      {% case matrix_active_mode %}
+        {% when 'jobs' %}
+          {% render 'matrix/index/list', items: pages %}
+        {% when 'events' %}
+          {% render 'matrix/index/timeline', items: pages %}
+        {% when 'podcasts' %}
+          {% render 'matrix/index/audio_list', items: pages %}
+        {% else %}
+          {% render 'matrix/index/grid', items: pages, mode: matrix_active_mode %}
+      {% endcase %}
+
+      <div class="flex justify-center mt-8">
+        {% render 'paginate', paginate: paginate %}
+      </div>
+    {% endpaginate_tag %}
+  </section>
+</div>
+

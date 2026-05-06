@@ -12,6 +12,26 @@
     {{ 'stylesheets/application.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
     {{ 'fonts/remixicon.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
 
+    {% assign matrix_active_mode = site.settings.active_mode | presence %}
+    {% unless matrix_active_mode %}{% assign matrix_active_mode = 'products' %}{% endunless %}
+    {% assign matrix_primary = site.settings.brand_primary | presence %}
+    {% unless matrix_primary %}{% assign matrix_primary = site.settings.header_bg_color | presence %}{% endunless %}
+    {% unless matrix_primary %}{% assign matrix_primary = '#0d9488' %}{% endunless %}
+    {% assign matrix_font_sans = site.settings.brand_font_sans | presence %}
+    {% unless matrix_font_sans %}
+      {% assign matrix_font_sans = 'Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Arial, sans-serif' %}
+    {% endunless %}
+    <style>
+      :root{
+        --matrix-primary: {{ matrix_primary }};
+        --matrix-font-sans: {{ matrix_font_sans }};
+        /* Backward compatibility for existing tokens */
+        --color-primary: var(--matrix-primary);
+      }
+    </style>
+
+    {% render 'matrix/jsonld', page: page %}
+
     {% assign head_html = site.settings.head_html | presence %}
     {% if head_html %}
       <!-- start head_html -->
@@ -19,7 +39,7 @@
       <!-- end head_html -->
     {% endif %}
   </head>
-  <body class="grid grid-rows-[auto_1fr_auto] min-h-screen" id='js-body'>
+  <body class="grid grid-rows-[auto_1fr_auto] min-h-screen mode-{{ matrix_active_mode }}" id='js-body'>
     {% render 'header' %}
     {{ content_for_layout }}
     {% render 'footer' %}

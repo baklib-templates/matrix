@@ -96,3 +96,52 @@
   @apply bg-white/60 dark:bg-gray-800/60 border-white/80 dark:border-gray-600/80;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
 }
+
+/* Matrix white-label helpers */
+.matrix-search {
+  @apply rounded-full;
+}
+.matrix-search input[type="text"] {
+  @apply w-full outline-none;
+}
+.matrix-search--header input[type="text"] {
+  @apply h-9 bg-white/15 text-white placeholder:text-white/70 focus:ring-4 focus:ring-white/15;
+}
+.matrix-search--header svg {
+  @apply text-white/80;
+}
+
+/* Mode-driven presentation (1+6 modes) */
+.matrix-card {
+  @apply transition-all duration-200;
+}
+
+/* Products: tighter spec-forward density */
+.mode-products .matrix-card {
+  @apply border border-gray-200/60 dark:border-gray-700/60;
+}
+
+/* Videos: stronger hover + preview affordance */
+.mode-videos .matrix-card {
+  @apply hover:shadow-xl;
+}
+
+/* Partners: logo-first, softer surfaces */
+.mode-partners .matrix-card {
+  @apply bg-white/30 dark:bg-gray-800/30;
+}
+
+/* Events: timeline cards keep compact top area */
+.mode-events .matrix-timeline .matrix-card {
+  @apply border-l-4 border-l-[var(--matrix-primary)];
+}
+
+/* Jobs: list items highlight CTA color */
+.mode-jobs .matrix-list .matrix-card:hover {
+  @apply border-[var(--matrix-primary)]/40;
+}
+
+/* Podcasts: audio rows emphasize controls */
+.mode-podcasts .matrix-audio-list .matrix-card button {
+  @apply shadow-sm;
+}

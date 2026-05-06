@@ -1,0 +1,29 @@
+<div
+  class="mt-6"
+  x-data="matrixTagFilter()"
+>
+  <div class="flex items-center justify-between mb-3">
+    <h3 class="text-sm font-bold text-gray-700 dark:text-gray-200">筛选</h3>
+    <button
+      type="button"
+      class="text-xs underline opacity-70 hover:opacity-100"
+      @click="clear()"
+      x-show="activeTags.length > 0"
+      x-cloak
+    >清空</button>
+  </div>
+
+  <div class="flex flex-wrap gap-2">
+    {% for tag in site.tags %}
+      <button
+        type="button"
+        class="inline-flex items-center gap-1 px-3 py-1 text-xs rounded-full border border-gray-200 dark:border-gray-700 bg-white/60 dark:bg-gray-800/60 hover:border-[var(--matrix-primary)] hover:text-[var(--matrix-primary)] transition"
+        :class="{ 'border-[var(--matrix-primary)] text-[var(--matrix-primary)] bg-[color-mix(in_oklab,var(--matrix-primary)_12%,transparent)]': isActive('{{ tag.name | escape_once }}') }"
+        @click="toggle('{{ tag.name | escape_once }}')"
+      >
+        <span>#{{ tag.name }}</span>
+      </button>
+    {% endfor %}
+  </div>
+</div>
+

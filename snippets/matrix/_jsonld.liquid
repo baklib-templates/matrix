@@ -1,0 +1,125 @@
+{% assign matrix_active_mode = site.settings.active_mode | presence %}
+{% unless matrix_active_mode %}{% assign matrix_active_mode = 'products' %}{% endunless %}
+
+{% assign site_name = site.name | presence %}
+{% unless site_name %}{% assign site_name = 'Matrix' %}{% endunless %}
+
+{% assign base_url = site.url | presence %}
+{% unless base_url %}{% assign base_url = site.root_path | presence %}{% endunless %}
+{% unless base_url %}{% assign base_url = '' %}{% endunless %}
+
+{% comment %} WebSite + SearchAction {% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ site_name | json }},
+  "url": {{ base_url | json }},
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {{ (base_url | append: "/-/search?q={search_term_string}") | json }},
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+{% comment %} Organization (white-label brand) {% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ site_name | json }},
+  "url": {{ base_url | json }},
+  "logo": {{ site.settings.logo_url | json }}
+}
+</script>
+
+{% if page %}
+  {% assign page_url = page.url | presence %}
+  {% unless page_url %}{% assign page_url = page.path | presence %}{% endunless %}
+  {% assign page_name = page.link_text | presence %}
+  {% unless page_name %}{% assign page_name = site_name %}{% endunless %}
+
+  {% case matrix_active_mode %}
+    {% when 'jobs' %}
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "JobPosting",
+        "title": {{ page_name | json }},
+        "description": {{ page.settings.description | json }},
+        "datePosted": {{ page.published_at | date: "%Y-%m-%d" | json }},
+        "hiringOrganization": { "@type": "Organization", "name": {{ site_name | json }} },
+        "jobLocation": {
+          "@type": "Place",
+          "address": { "@type": "PostalAddress", "addressLocality": {{ page.settings.location | json }} }
+        }
+      }
+      </script>
+    {% when 'events' %}
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": {{ page_name | json }},
+        "description": {{ page.settings.description | json }},
+        "startDate": {{ page.settings.event_start_at | json }},
+        "endDate": {{ page.settings.event_end_at | json }},
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "location": {
+          "@type": "Place",
+          "name": {{ page.settings.location | json }}
+        },
+        "url": {{ page_url | json }}
+      }
+      </script>
+    {% when 'podcasts' %}
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "PodcastEpisode",
+        "name": {{ page_name | json }},
+        "description": {{ page.settings.description | json }},
+        "url": {{ page_url | json }},
+        "associatedMedia": {
+          "@type": "MediaObject",
+          "contentUrl": {{ page.settings.audio_url | json }}
+        }
+      }
+      </script>
+    {% when 'videos' %}
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": {{ page_name | json }},
+        "description": {{ page.settings.description | json }},
+        "contentUrl": {{ page.settings.video_url | json }},
+        "url": {{ page_url | json }}
+      }
+      </script>
+    {% when 'partners' %}
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": {{ page_name | json }},
+        "description": {{ page.settings.description | json }},
+        "url": {{ page_url | json }}
+      }
+      </script>
+    {% else %}
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": {{ page_name | json }},
+        "description": {{ page.settings.description | json }},
+        "url": {{ page_url | json }},
+        "brand": { "@type": "Brand", "name": {{ site_name | json }} }
+      }
+      </script>
+  {% endcase %}
+{% endif %}
+

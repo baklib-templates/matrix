@@ -1,5 +1,5 @@
 pages:
-  name: "Directify 导航站"
+  name: "Matrix 旗舰主题演示站"
   slug: "index"
   template_name: "index"
   settings:
@@ -8,156 +8,237 @@ pages:
         <div class="absolute inset-0 bg-cover bg-center opacity-90" style="background-image: url('images/hero.jpg');"></div>
         <div class="absolute inset-0 bg-gradient-to-r from-slate-900/85 via-slate-900/70 to-slate-900/40"></div>
         <div class="relative max-w-5xl mx-auto px-6 py-16 md:py-20 text-white">
-          <p class="text-sm font-medium uppercase tracking-widest text-teal-300/90 mb-3">Baklib · Directify</p>
-          <h1 class="text-3xl md:text-4xl font-bold leading-tight mb-4">常用头部站点导航</h1>
-          <p class="text-lg text-white/85 max-w-2xl mb-8">收录 Google、OpenAI、微软、苹果、百度、阿里云、腾讯等品牌官方入口，配合栏目与卡片快速跳转。</p>
+          <p class="text-sm font-medium uppercase tracking-widest text-teal-300/90 mb-3">Baklib · Matrix</p>
+          <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-4">基于 CaaS 理念的全场景实体资产引擎</h1>
+          <p class="text-lg text-white/85 max-w-2xl mb-8">一套核心模板，通过 Mode 切换 6 种业务形态：Partners / Products / Videos / Podcasts / Events / Jobs。</p>
           <div class="flex flex-wrap gap-3">
-            <a href="/search" class="btn btn-primary btn-sm md:btn-md">搜索引擎</a>
-            <a href="/ai" class="btn btn-outline btn-sm md:btn-md border-white/40 text-white hover:bg-white/10">AI 与智能</a>
-            <a href="/cn-cloud" class="btn btn-outline btn-sm md:btn-md border-white/40 text-white hover:bg-white/10">中国云与互联网</a>
+            <a href="/products" class="btn btn-primary btn-sm md:btn-md">Products</a>
+            <a href="/videos" class="btn btn-outline btn-sm md:btn-md border-white/40 text-white hover:bg-white/10">Videos</a>
+            <a href="/events" class="btn btn-outline btn-sm md:btn-md border-white/40 text-white hover:bg-white/10">Events</a>
           </div>
         </div>
       </section>
 
   children:
-    - name: "搜索引擎"
-      slug: "search"
+    - name: "Products"
+      slug: "products"
       template_name: "channel"
       settings:
-        title: "搜索引擎"
-        description: "全球与中国主流搜索入口，便于检索与发现。"
+        title: "Products"
+        description: "产品选型中心（Grid 1:1）"
         content: |
-          <p>本栏目收录 <strong>Google</strong> 与 <strong>百度</strong> 的官方站点。搜索服务可能因地区与合规策略存在差异，请以各站说明为准。</p>
+          <p>建议把每个产品作为一个 <code>page</code>，并在页面设置里填参数、库存与 CTA。</p>
       children:
-        - name: "Google"
-          slug: "google"
+        - name: "Matrix Laptop"
+          slug: "matrix-laptop"
           template_name: "page"
           settings:
-            title: "Google"
-            brand_name: "Google LLC"
-            description: "全球使用广泛的搜索引擎与广告、云与生产力产品矩阵。"
-            version: "入口"
-            original_url: "https://www.google.com"
+            title: "Matrix Laptop"
+            description: "轻薄高性能旗舰笔记本，适合移动办公与创作。"
+            tags: ["Laptop", "旗舰", "16GB"]
+            logo_url: "images/thumb.png"
+            inventory_status: "InStock"
+            cta_label: "咨询/购买"
+            cta_url: "https://example.com/buy"
+            specs_json: |
+              CPU: M-Next 12C
+              RAM: 16GB
+              Storage: 1TB SSD
+              Weight: 1.2kg
             content: |
-              <p>Google 提供网页搜索、图片、视频与地图等服务，并延伸至 Android、Chrome、Workspace 与 Google Cloud 等产品线。</p>
-              <p>演示说明：点击顶栏「外链」或使用页面侧栏外链按钮可前往官网（需在主题中启用外链展示）。</p>
-          children:
-            - name: "站内笔记：Google 检索提示"
-              slug: "google-notes"
-              template_name: "post"
-              settings:
-                title: "站内笔记：Google 检索提示"
-                description: "演示 page → post 层级与富文本内容。"
-                content_type: "0"
-                content: |
-                  <p>在 Google 搜索框中可尝试使用引号精确匹配，例如 <code>"Baklib CMS"</code>。</p>
-                  <p>使用 <code>site:example.com</code> 可限定在指定域名内检索。</p>
+              <p>这是一个产品详情页示例。你可以在正文里写卖点、FAQ、以及对比说明。</p>
 
-        - name: "百度"
-          slug: "baidu"
+        - name: "Matrix Camera"
+          slug: "matrix-camera"
           template_name: "page"
           settings:
-            title: "百度"
-            brand_name: "百度"
-            description: "中文搜索与信息流、智能云、自动驾驶等综合科技服务。"
-            version: "入口"
-            original_url: "https://www.baidu.com"
+            title: "Matrix Camera"
+            description: "专业级影像系统，面向视频创作者与活动直播。"
+            tags: ["Camera", "Creator"]
+            logo_url: "images/thumb.png"
+            inventory_status: "OutOfStock"
+            cta_label: "预约到货"
+            specs_json: |
+              Sensor: 1-inch
+              Stabilization: OIS+EIS
+              Video: 4K60
             content: |
-              <p>百度是中国领先的搜索引擎与人工智能公司，业务覆盖搜索推广、智能云、自动驾驶（Apollo）与内容生态等。</p>
-              <p>本页为演示数据，用于展示栏目下的站点卡片与描述字段。</p>
+              <p>演示库存状态与参数表。</p>
 
-    - name: "AI 与智能"
-      slug: "ai"
+    - name: "Videos"
+      slug: "videos"
       template_name: "channel"
       settings:
-        title: "AI 与智能"
-        description: "全球 AI 与智能云代表品牌入口。"
+        title: "Videos"
+        description: "视频/流媒体站（Grid 16:9，Hover 预览）"
         content: |
-          <p>本栏目收录 <strong>OpenAI</strong> 与 <strong>微软（Microsoft）</strong>。前者以生成式 AI 研究与应用著称，后者提供 Azure、Microsoft 365 与 Copilot 等企业级能力。</p>
+          <p>每条视频也是一个 <code>page</code>，用 <code>video_url</code> 指向 mp4 或可嵌入地址。</p>
       children:
-        - name: "OpenAI"
-          slug: "openai"
+        - name: "Product Demo"
+          slug: "product-demo"
           template_name: "page"
           settings:
-            title: "OpenAI"
-            brand_name: "OpenAI"
-            description: "人工智能研究与 ChatGPT、API 等产品。"
-            version: "入口"
-            original_url: "https://openai.com"
+            title: "Product Demo"
+            description: "新品演示视频：核心功能与场景落地。"
+            tags: ["Demo", "Launch"]
+            video_url: "https://example.com/demo.mp4"
+            related_products_paths: |
+              /products/matrix-laptop
+              /products/matrix-camera
             content: |
-              <p>OpenAI 聚焦通用人工智能研究，面向开发者与企业提供模型 API，并向用户提供 ChatGPT 等对话产品。</p>
-              <ul>
-                <li>模型与能力以官网文档为准</li>
-                <li>企业部署需关注区域合规与数据策略</li>
-              </ul>
+              <p>演示顶部大屏播放器 + 关联产品卡片。</p>
 
-        - name: "微软"
-          slug: "microsoft"
+        - name: "Behind the Scenes"
+          slug: "bts"
           template_name: "page"
           settings:
-            title: "微软"
-            brand_name: "Microsoft"
-            description: "Windows、Microsoft 365、Azure 与 Copilot 等企业级云与生产力平台。"
-            version: "入口"
-            original_url: "https://www.microsoft.com"
+            title: "Behind the Scenes"
+            description: "幕后花絮：拍摄与制作流程。"
+            tags: ["BTS"]
+            video_url: "https://example.com/bts.mp4"
             content: |
-              <p>微软提供从操作系统、办公协作到公有云 Azure 的完整栈，并在全线产品中集成 Copilot 智能助手能力。</p>
-              <p>演示站点将微软与 OpenAI 同列于「AI 与智能」栏目，便于对比查阅。</p>
+              <p>演示另一条视频条目。</p>
 
-    - name: "消费与生态"
-      slug: "consumer"
+    - name: "Podcasts"
+      slug: "podcasts"
       template_name: "channel"
       settings:
-        title: "消费与生态"
-        description: "消费电子、软件与全球开发者生态。"
+        title: "Podcasts"
+        description: "播客/音频站（Audio List + Transcript）"
         content: |
-          <p>本栏目收录 <strong>苹果（Apple）</strong>，覆盖 iPhone、Mac、iPad、软件服务与开发者生态。</p>
+          <p>每期播客作为一个 <code>page</code>，用 <code>audio_url</code>、<code>audio_duration</code>、<code>transcript</code> 承载信息。</p>
       children:
-        - name: "苹果"
-          slug: "apple"
+        - name: "Episode 01"
+          slug: "episode-01"
           template_name: "page"
           settings:
-            title: "苹果"
-            brand_name: "Apple Inc."
-            description: "iPhone、Mac、iPad、Apple Watch、软件服务与开发者生态。"
-            version: "入口"
-            original_url: "https://www.apple.com"
-            logo_url: "https://www.apple.com/favicon.ico"
+            title: "Episode 01"
+            description: "从 CaaS 到 Matrix：如何把内容变成可运营资产。"
+            tags: ["CaaS", "内容运营"]
+            audio_url: "https://example.com/episode-01.mp3"
+            audio_duration: "38:12"
+            transcript: |
+              <p><strong>主持人</strong>：欢迎收听 Matrix。</p>
+              <p><strong>嘉宾</strong>：我们从 CaaS 的角度谈谈“实体资产引擎”。</p>
             content: |
-              <p>Apple 设计并销售消费电子与软件服务，其生态涵盖硬件、操作系统、App Store 与隐私安全体系。</p>
-              <p>种子中 <code>logo_url</code> 使用官网 favicon 外链，演示 LOGO 区展示（若主题允许外链图片）。</p>
+              <p>演示详情页播放器与 transcript 区域。</p>
 
-    - name: "中国云与互联网"
-      slug: "cn-cloud"
+        - name: "Episode 02"
+          slug: "episode-02"
+          template_name: "page"
+          settings:
+            title: "Episode 02"
+            description: "6 种 Mode 的信息架构：如何用一套模板覆盖不同业务。"
+            tags: ["IA", "Mode"]
+            audio_url: "https://example.com/episode-02.mp3"
+            audio_duration: "42:05"
+            content: |
+              <p>演示另一条播客条目。</p>
+
+    - name: "Events"
+      slug: "events"
       template_name: "channel"
       settings:
-        title: "中国云与互联网"
-        description: "中国领先的云计算与互联网综合服务。"
+        title: "Events"
+        description: "活动/展会中心（Timeline + Agenda + Calendar）"
         content: |
-          <p>本栏目收录 <strong>阿里云</strong> 与 <strong>腾讯</strong>，分别代表企业数字化与云基础设施、以及社交、游戏、金融科技等多元业务。</p>
+          <p>活动条目建议填写开始/结束时间（ISO 或 YYYY-MM-DD），以及 <code>agenda_md</code>（每行：时间 | 议程）。</p>
       children:
-        - name: "阿里云"
-          slug: "aliyun"
+        - name: "Matrix Summit 2026"
+          slug: "matrix-summit-2026"
           template_name: "page"
           settings:
-            title: "阿里云"
-            brand_name: "阿里云"
-            description: "企业级云计算与数据智能服务。"
-            version: "入口"
-            original_url: "https://www.aliyun.com"
+            title: "Matrix Summit 2026"
+            description: "旗舰主题发布会：产品、内容与增长全链路。"
+            tags: ["Summit", "发布会"]
+            location: "上海"
+            event_start_at: "2026-06-18"
+            event_end_at: "2026-06-18"
+            agenda_md: |
+              10:00 | 开场与主题演讲
+              11:00 | 产品演示：6 Mode 统一架构
+              14:00 | 圆桌：内容资产化
             content: |
-              <p>阿里云提供计算、存储、网络、数据库、大数据与人工智能等云服务，服务政企与开发者客户。</p>
-              <p>适合作为「中国云」类目的代表性入口页面。</p>
+              <p>演示时间轴状态、添加到日历与 Agenda。</p>
 
-        - name: "腾讯"
-          slug: "tencent"
+        - name: "Roadshow"
+          slug: "roadshow"
           template_name: "page"
           settings:
-            title: "腾讯"
-            brand_name: "腾讯"
-            description: "社交、游戏、金融科技、云与智慧产业等综合服务。"
-            version: "入口"
-            original_url: "https://www.tencent.com"
+            title: "Roadshow"
+            description: "区域巡展：客户案例与现场体验。"
+            tags: ["Roadshow"]
+            location: "深圳"
+            event_start_at: "2026-08-01"
+            event_end_at: "2026-08-01"
             content: |
-              <p>腾讯旗下涵盖微信与 QQ 等社交产品、游戏与数字内容、金融科技以及腾讯云等 ToB 业务。</p>
-              <p>与阿里云并列，便于在导航站中对比两家头部互联网公司的官网入口。</p>
+              <p>演示另一条活动条目。</p>
+
+    - name: "Jobs"
+      slug: "jobs"
+      template_name: "channel"
+      settings:
+        title: "Jobs"
+        description: "招聘/雇主品牌（List 强调薪资/地点/发布时间）"
+        content: |
+          <p>职位条目建议填写 <code>salary_range</code>、<code>location</code>，并在详情页使用快速应聘弹窗。</p>
+      children:
+        - name: "Frontend Engineer"
+          slug: "frontend-engineer"
+          template_name: "page"
+          settings:
+            title: "Frontend Engineer"
+            description: "负责 Matrix 主题的 Tailwind/Alpine 组件化与性能优化。"
+            tags: ["Frontend", "Alpine", "Tailwind"]
+            salary_range: "25k-45k"
+            location: "上海/远程"
+            cta_label: "快速应聘"
+            content: |
+              <p>演示 Jobs 详情页的侧边快速应聘与底部投递区。</p>
+
+        - name: "Product Designer"
+          slug: "product-designer"
+          template_name: "page"
+          settings:
+            title: "Product Designer"
+            description: "负责跨 Mode 的信息架构与组件规范设计。"
+            tags: ["Design", "IA"]
+            salary_range: "20k-35k"
+            location: "深圳"
+            cta_label: "投递简历"
+            content: |
+              <p>演示另一条职位条目。</p>
+
+    - name: "Partners"
+      slug: "partners"
+      template_name: "channel"
+      settings:
+        title: "Partners"
+        description: "合作伙伴门户（Logo-first Grid）"
+        content: |
+          <p>合作伙伴条目可以重点填写 Logo、简介与 CTA（申请合作/下载资料）。</p>
+      children:
+        - name: "Acme Studio"
+          slug: "acme-studio"
+          template_name: "page"
+          settings:
+            title: "Acme Studio"
+            description: "内容策划与活动执行合作伙伴。"
+            tags: ["Agency"]
+            logo_url: "images/thumb.png"
+            cta_label: "申请合作"
+            cta_url: "https://example.com/partner"
+            content: |
+              <p>演示 Partners 详情页的合作入口 CTA。</p>
+
+        - name: "Beta Labs"
+          slug: "beta-labs"
+          template_name: "page"
+          settings:
+            title: "Beta Labs"
+            description: "产品共创与技术生态合作伙伴。"
+            tags: ["Ecosystem", "CoBuild"]
+            logo_url: "images/thumb.png"
+            cta_label: "联系对接"
+            content: |
+              <p>CTA 未配置链接时，将走站内 Modal（可在后续统一表单逻辑）。</p>

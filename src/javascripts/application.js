@@ -1,12 +1,116 @@
 import "@hotwired/turbo";
 import Alpine from "alpinejs";
 import videoPlayer from "./video_player";
-import { tns } from "tiny-slider";
 import './controllers';
-window.tns = tns;
 
 Alpine.data("videoPlayer", videoPlayer);
 window.Alpine = Alpine;
+
+// Matrix interactions
+Alpine.store("matrixModal", {
+  opened: null,
+  open(id) {
+    this.opened = id;
+  },
+  close() {
+    this.opened = null;
+  },
+});
+
+Alpine.store("matrixPlayer", {
+  audio: null,
+  title: null,
+  ensure() {
+    if (!this.audio) {
+      this.audio = new Audio();
+    }
+  },
+  play(url, title) {
+    this.ensure();
+    this.audio.src = url;
+    this.title = title || null;
+    this.audio.play();
+  },
+  pause() {
+    if (this.audio) this.audio.pause();
+  },
+});
+
+Alpine.store("matrixCalendar", {
+  add({ title, start, end, location }) {
+    const text = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//Baklib Matrix//EN",
+      "BEGIN:VEVENT",
+      `SUMMARY:${(title || "").replaceAll("\n", " ")}`,
+      start ? `DTSTART:${start.replaceAll(/[-:]/g, "").replaceAll(".000Z", "Z")}` : "",
+      end ? `DTEND:${end.replaceAll(/[-:]/g, "").replaceAll(".000Z", "Z")}` : "",
+      location ? `LOCATION:${location.replaceAll("\n", " ")}` : "",
+      "END:VEVENT",
+      "END:VCALENDAR",
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    const blob = new Blob([text], { type: "text/calendar;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "event.ics";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  },
+});
+
+window.matrixTagFilter = function matrixTagFilter() {
+  const normalize = (t) => (t || "").trim();
+  const parseCsv = (s) =>
+    (s || "")
+      .split(",")
+      .map((x) => normalize(x))
+      .filter(Boolean);
+
+  const api = {
+    activeTags: [],
+    toggle(tag) {
+      const t = normalize(tag);
+      if (!t) return;
+      const i = this.activeTags.indexOf(t);
+      if (i >= 0) this.activeTags.splice(i, 1);
+      else this.activeTags.push(t);
+      this.apply();
+    },
+    isActive(tag) {
+      const t = normalize(tag);
+      return this.activeTags.includes(t);
+    },
+    clear() {
+      this.activeTags = [];
+      this.apply();
+    },
+    apply() {
+      const container =
+        this.$root?.closest("[data-matrix-filter-container]") ||
+        document.querySelector("[data-matrix-filter-container]");
+      const root = container?.parentElement || document;
+      const items = root.querySelectorAll("[data-matrix-item]");
+      items.forEach((el) => {
+        if (this.activeTags.length === 0) {
+          el.classList.remove("hidden");
+          return;
+        }
+        const tags = parseCsv(el.getAttribute("data-tags"));
+        const ok = this.activeTags.every((t) => tags.includes(t));
+        el.classList.toggle("hidden", !ok);
+      });
+    },
+  };
+
+  return api;
+};
 
 Alpine.start();
 

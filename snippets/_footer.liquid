@@ -1,26 +1,21 @@
 {% assign dark_logo = site.settings.dark_logo_url %}
 {% assign icp_beian = site.settings.icp_beian | presence %}
+{% assign footer_bg = site.settings.footer_bg_color | presence %}
+{% unless footer_bg %}{% assign footer_bg = '#0b1220' %}{% endunless %}
+{% assign footer_text = site.settings.footer_text_color | presence %}
+{% unless footer_text %}{% assign footer_text = '#cbd5e1' %}{% endunless %}
 
 <!-- Site footer -->
-<footer
-  class="relative"
-  style="background-color: {{ site.settings.footer_bg_color }}; color: {{ site.settings.footer_text_color }};"
-  x-init="$nextTick(() => { footerHeader = $el.offsetHeight })">
-  <div class="container mx-auto px-4 sm:px-6">
-
+<footer class="relative" style="background-color: {{ footer_bg }}; color: {{ footer_text }};">
+  <div class="container mx-auto py-10 px-4 sm:px-6 lg:px-8">
     {% assign footer_nav_links = site.settings.footer_nav_links | presence %}
     {% if footer_nav_links %}
-      <div class="">
-        {{ site.settings.footer_nav_links }}
-      </div>
+      <nav class="mb-8 prose max-w-none prose-a:no-underline prose-a:text-[color:var(--matrix-primary)]">
+        {{ footer_nav_links }}
+      </nav>
     {% endif %}
 
-  </div>
-</footer>
-
-<footer class="bg-gray-800">
-  <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-    <div class="text-center text-gray-300">
+    <div class="text-center">
       <p class="mb-2">
         {% if site.settings.footer_description != blank %}
           {{ site.settings.footer_description }}
@@ -30,15 +25,14 @@
       </p>
       <p class="text-sm mb-4">
         &copy; {{ now | date: '%Y' }} {{ site.settings.copyright }}. All rights reserved.
-        <a
-          href="https://beian.miit.gov.cn/"
-          target="_blank"
-          class="text-indigo-400 hover:text-indigo-300">{{ icp_beian }}</a>
+        {% if icp_beian %}
+          <a href="https://beian.miit.gov.cn/" target="_blank" class="underline underline-offset-4 opacity-90 hover:opacity-100">{{ icp_beian }}</a>
+        {% endif %}
       </p>
-      <p class="text-xs text-gray-500">
+      <p class="text-xs opacity-70">
         {{ 'snippets.footer.powered_by_prefix' | t }}
         <a href="https://www.baklib.com" target="_blank">
-          <span class="font-semibold text-indigo-500">Baklib</span>
+          <span class="font-semibold text-[color:var(--matrix-primary)]">Baklib</span>
         </a>
         {{ 'snippets.footer.powered_by_suffix' | t }}
       </p>

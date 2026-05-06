@@ -1,0 +1,79 @@
+{% assign start_at = page.settings.event_start_at | presence %}
+{% assign end_at = page.settings.event_end_at | presence %}
+{% assign location = page.settings.location | presence %}
+{% assign agenda_md = page.settings.agenda_md | presence %}
+
+{% render 'matrix/page/_base_sections', page: page %}
+
+<section class="mt-8 grid gap-4 md:grid-cols-3">
+  <div class="md:col-span-2 space-y-4">
+    <div class="glass-card rounded-2xl p-5">
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100">活动信息</h2>
+      <dl class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+        {% if start_at %}
+          <div>
+            <dt class="opacity-70">开始</dt>
+            <dd class="mt-1 font-medium">{{ start_at }}</dd>
+          </div>
+        {% endif %}
+        {% if end_at %}
+          <div>
+            <dt class="opacity-70">结束</dt>
+            <dd class="mt-1 font-medium">{{ end_at }}</dd>
+          </div>
+        {% endif %}
+        {% if location %}
+          <div>
+            <dt class="opacity-70">地点</dt>
+            <dd class="mt-1 font-medium">{{ location }}</dd>
+          </div>
+        {% endif %}
+      </dl>
+      <div class="mt-5">
+        <button
+          type="button"
+          class="px-4 py-2 rounded-full bg-[var(--matrix-primary)] text-white hover:opacity-95"
+          @click="$store.matrixCalendar.add({ title: '{{ page.link_text | escape_once }}', start: '{{ start_at | escape_once }}', end: '{{ end_at | escape_once }}', location: '{{ location | escape_once }}' })"
+        >
+          添加到日历
+        </button>
+      </div>
+    </div>
+
+    <div class="glass-card rounded-2xl p-5">
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100">活动议程（Agenda）</h2>
+      {% if agenda_md %}
+        {% assign agenda_lines = agenda_md | reg_split: "/\\n/" %}
+        <ol class="mt-4 space-y-3">
+          {% for line in agenda_lines %}
+            {% assign parts = line | reg_split: "/\\|/" %}
+            {% assign time = parts[0] | strip %}
+            {% assign title = parts[1] | strip %}
+            {% if time != blank or title != blank %}
+              <li class="flex gap-3">
+                <div class="shrink-0 w-20 text-sm font-semibold text-[var(--matrix-primary)]">{{ time }}</div>
+                <div class="flex-1 text-sm opacity-80">{{ title }}</div>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ol>
+      {% else %}
+        <p class="mt-2 text-sm opacity-70">在页面设置填写 `agenda_md`（每行：`时间 | 议程`）。</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <aside class="md:col-span-1">
+    <div class="glass-card rounded-2xl p-5 sticky top-24">
+      <h3 class="font-semibold text-gray-900 dark:text-gray-100">状态</h3>
+      {% assign status = 'upcoming' %}
+      {% if end_at and now > end_at %}{% assign status = 'ended' %}{% endif %}
+      {% if status == 'upcoming' %}
+        <div class="mt-2 text-sm px-3 py-2 rounded-xl bg-emerald-500/10 text-emerald-700 dark:text-emerald-300">即将开始</div>
+      {% else %}
+        <div class="mt-2 text-sm px-3 py-2 rounded-xl bg-gray-500/10 text-gray-700 dark:text-gray-300">已结束</div>
+      {% endif %}
+    </div>
+  </aside>
+</section>
+

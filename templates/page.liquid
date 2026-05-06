@@ -57,7 +57,7 @@
     </div>
 
     <div class="md:w-3/4">
-			{% render 'page', page: page %}
+      {% render 'matrix/page/page_router', page: page %}
 
       <section class="bg-gray-50 p-4 rounded-2xl">
         <h2 class="text-xl font-medium mb-2 flex items-center space-x-2">
@@ -192,7 +192,26 @@
 				"label": "t:schema.templates.page.settings.content.label",
 				"readonly": false,
 				"info": "t:schema.templates.page.settings.content.info"
-			}
+			},
+
+      { "id": "salary_range", "type": "text", "label": "Jobs: 薪资范围", "queryable": true },
+      { "id": "location", "type": "text", "label": "通用: 地点/城市", "queryable": true },
+
+      { "id": "inventory_status", "type": "text", "label": "Products: 库存状态（如 InStock/OutOfStock）" },
+      { "id": "cta_url", "type": "text", "label": "通用: CTA 链接（咨询/购买/应聘）" },
+      { "id": "cta_label", "type": "text", "label": "通用: CTA 文案", "default": "立即咨询" },
+      { "id": "specs_json", "type": "textarea", "label": "Products: 参数（JSON，键值对）" },
+
+      { "id": "video_url", "type": "text", "label": "Videos: 视频地址（mp4 或嵌入链接）" },
+      { "id": "related_products_paths", "type": "textarea", "label": "Videos: 关联产品路径（每行一个 /path）" },
+
+      { "id": "event_start_at", "type": "text", "label": "Events: 开始时间（ISO 或 YYYY-MM-DD）", "queryable": true },
+      { "id": "event_end_at", "type": "text", "label": "Events: 结束时间（ISO 或 YYYY-MM-DD）" },
+      { "id": "agenda_md", "type": "textarea", "label": "Events: Agenda（每行: 时间 | 议程）" },
+
+      { "id": "audio_url", "type": "text", "label": "Podcasts: 音频地址（mp3）" },
+      { "id": "audio_duration", "type": "text", "label": "Podcasts: 时长（如 38:12）" },
+      { "id": "transcript", "type": "richtext", "label": "Podcasts: Transcript（转录稿）" }
     ]
   }
 {% endschema %}

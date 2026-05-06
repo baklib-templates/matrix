@@ -1,0 +1,18 @@
+{% assign matrix_active_mode = site.settings.active_mode | presence %}
+{% unless matrix_active_mode %}{% assign matrix_active_mode = 'products' %}{% endunless %}
+
+{% case matrix_active_mode %}
+  {% when 'jobs' %}
+    {% render 'matrix/page/jobs', page: page %}
+  {% when 'events' %}
+    {% render 'matrix/page/events', page: page %}
+  {% when 'podcasts' %}
+    {% render 'matrix/page/podcasts', page: page %}
+  {% when 'videos' %}
+    {% render 'matrix/page/videos', page: page %}
+  {% when 'partners' %}
+    {% render 'matrix/page/partners', page: page %}
+  {% else %}
+    {% render 'matrix/page/products', page: page %}
+{% endcase %}
+

@@ -1,0 +1,33 @@
+{% assign cta_label = page.settings.cta_label | presence %}
+{% unless cta_label %}{% assign cta_label = '成为合作伙伴' %}{% endunless %}
+{% assign cta_url = page.settings.cta_url | presence %}
+
+{% render 'matrix/page/_base_sections', page: page %}
+
+<section class="mt-8 grid gap-4 md:grid-cols-3">
+  <div class="md:col-span-2 space-y-4">
+    <div class="glass-card rounded-2xl p-5">
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100">合作资源</h2>
+      <p class="mt-2 text-sm opacity-80">这里可以放合作条款、资源包、对接流程等内容（直接在正文编辑）。</p>
+    </div>
+  </div>
+
+  <aside class="md:col-span-1">
+    <div class="glass-card rounded-2xl p-5 sticky top-24">
+      <h3 class="font-semibold text-gray-900 dark:text-gray-100">合作入口</h3>
+      <p class="mt-1 text-sm opacity-70">保持白标一致的 CTA 体验。</p>
+      <div class="mt-4">
+        {% if cta_url %}
+          <a href="{{ cta_url }}" class="block text-center px-4 py-2 rounded-full bg-[var(--matrix-primary)] text-white hover:opacity-95">
+            {{ cta_label }}
+          </a>
+        {% else %}
+          <button type="button" class="w-full px-4 py-2 rounded-full bg-[var(--matrix-primary)] text-white hover:opacity-95" @click="$store.matrixModal.open('partner-cta')">
+            {{ cta_label }}
+          </button>
+        {% endif %}
+      </div>
+    </div>
+  </aside>
+</section>
+

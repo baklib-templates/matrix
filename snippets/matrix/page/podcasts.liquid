@@ -1,0 +1,57 @@
+{% assign audio_url = page.settings.audio_url | presence %}
+{% assign duration = page.settings.audio_duration | presence %}
+
+{% render 'matrix/page/_base_sections', page: page %}
+
+<section class="mt-8 space-y-4">
+  <div class="glass-card rounded-2xl p-5">
+    <div class="flex items-center justify-between gap-4">
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100">播放器</h2>
+      {% if duration %}
+        <span class="text-xs opacity-70">{{ duration }}</span>
+      {% endif %}
+    </div>
+
+    {% if audio_url %}
+      <div class="mt-4" x-data="{ playing: false }">
+        <div class="flex items-center gap-3">
+          <button
+            type="button"
+            class="px-4 py-2 rounded-full bg-[var(--matrix-primary)] text-white hover:opacity-95"
+            @click="$store.matrixPlayer.play('{{ audio_url | escape_once }}','{{ page.link_text | escape_once }}'); playing = true;"
+          >
+            <i class="ri-play-line"></i>
+            播放
+          </button>
+          <button
+            type="button"
+            class="px-4 py-2 rounded-full border border-gray-200 dark:border-gray-700"
+            @click="$store.matrixPlayer.pause(); playing = false;"
+          >
+            暂停
+          </button>
+        </div>
+
+        <div class="mt-4">
+          <div class="h-2 rounded-full bg-gray-200/70 dark:bg-gray-700/70 overflow-hidden">
+            <div class="h-full w-1/4 bg-[color-mix(in_oklab,var(--matrix-primary)_45%,white)]"></div>
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <p class="mt-2 text-sm opacity-70">在页面设置填写 `audio_url`（mp3）。</p>
+    {% endif %}
+  </div>
+
+  <div class="glass-card rounded-2xl p-5">
+    <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100">文字转录稿（Transcript）</h2>
+    {% if page.settings.transcript | presence %}
+      <div class="mt-4 prose max-w-none dark:prose-invert">
+        {{ page.settings.transcript }}
+      </div>
+    {% else %}
+      <p class="mt-2 text-sm opacity-70">在页面设置填写 `transcript`。</p>
+    {% endif %}
+  </div>
+</section>
+

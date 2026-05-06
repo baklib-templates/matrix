@@ -1,0 +1,50 @@
+{% assign video_url = page.settings.video_url | presence %}
+{% assign related_paths = page.settings.related_products_paths | presence %}
+
+{% render 'matrix/page/_base_sections', page: page %}
+
+<section class="mt-8 space-y-6">
+  <div class="glass-card rounded-2xl overflow-hidden">
+    {% if video_url %}
+      <div class="aspect-video bg-black">
+        {% if video_url contains 'http' %}
+          <video class="w-full h-full" controls playsinline>
+            <source src="{{ video_url }}" />
+          </video>
+        {% else %}
+          <div class="p-6 text-white/80">请在 `video_url` 填写完整视频地址（mp4）。</div>
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="aspect-video bg-gray-900 flex items-center justify-center text-white/80">
+        在页面设置填写 `video_url`。
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="glass-card rounded-2xl p-5">
+    <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100">关联产品</h2>
+    {% if related_paths %}
+      {% assign paths = related_paths | reg_split: "/\\n/" %}
+      <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {% for p in paths %}
+          {% assign path = p | strip %}
+          {% if path != blank %}
+            {% assign rp = site.pages[path] %}
+            {% if rp %}
+              <a href="{{ rp.path }}" class="glass-card rounded-2xl p-4 hover:translate-y-[-1px] transition">
+                <div class="font-semibold text-gray-900 dark:text-gray-100 line-clamp-2">{{ rp.link_text }}</div>
+                {% if rp.settings.description | presence %}
+                  <div class="mt-1 text-sm opacity-70 line-clamp-2">{{ rp.settings.description }}</div>
+                {% endif %}
+              </a>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="mt-2 text-sm opacity-70">在页面设置填写 `related_products_paths`（每行一个页面路径）。</p>
+    {% endif %}
+  </div>
+</section>
+
