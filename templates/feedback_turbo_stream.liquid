@@ -1,0 +1,52 @@
+{% layout none %}
+<turbo-stream action="remove" target="feedback_modal"></turbo-stream>
+
+<turbo-stream action="append" target="js-body">
+  <template>
+    <div
+      id="feedback_modal"
+      class="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden px-4 py-6 sm:px-5"
+      x-data="{ showModal: true }"
+      x-show="showModal"
+      :class="showModal ? 'show' : 'hidden'"
+      role="dialog"
+      x-cloak>
+      <div
+        class="absolute inset-0 transition-opacity duration-300 bg-slate-900/60"
+        @click="showModal = false"
+        x-show="showModal"
+        x-transition:enter="ease-out"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="ease-in"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"></div>
+      <div
+        class="relative w-full max-w-lg px-4 py-6 text-center transition-opacity duration-300 rounded-lg bg-white text-slate-800 dark:bg-slate-800 dark:text-slate-200 sm:px-5"
+        x-show="showModal"
+        x-transition:enter="ease-out"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="ease-in"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0">
+        <div class="flex justify-end w-full cursor-pointer" @click="showModal = false">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </div>
+        {% comment %} 反馈表单 {% endcomment %}
+        {% render 'feedback_form', page: page %}
+      </div>
+    </div>
+  </template>
+</turbo-stream>

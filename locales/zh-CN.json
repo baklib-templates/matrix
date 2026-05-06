@@ -1,0 +1,140 @@
+{
+  "templates": {
+    "page": {
+      "copy_success": "链接已复制",
+      "page_toc": "本页目录",
+      "site_nav": "站点导航"
+    },
+    "index": {
+      "category_nav": "分类导航",
+      "show_all": "显示全部",
+      "version_tags_title": "版本标签",
+      "featured_products_title": "推荐产品",
+      "tag_cloud_title": "标签云",
+      "no_tags": "暂无标签"
+    },
+    "channel": {
+      "show_all": "显示全部"
+    },
+    "tag": {
+      "empty": "内容为空！"
+    },
+    "directify_page": {
+      "settings": {
+        "title": {
+          "label": "标题"
+        },
+        "version": {
+          "label": "版本"
+        },
+        "brand_name": {
+          "label": "品牌"
+        },
+        "original_url": {
+          "label": "外部链接"
+        },
+        "description": {
+          "label": "描述"
+        }
+      }
+    },
+    "index_preview": {
+      "hero_title": "扩展您的首页样式、数据",
+      "hero_lead": "此模版为多产品复合文档库。可在一个站点中管理、展示多个产品文档，每个产品文档可根据实际需要配置不同的版本，提供统一的前端展示界面。",
+      "hero_bullet_1": "- 当前首页为演示样式",
+      "hero_bullet_2": "- 首页样式需要根据实际需求自定义处理，前往后台模版编辑中修改首页样式，或联系客服定制模版",
+      "hero_bullet_3": "- 除首页需要定制外，其他页面已提供正常的展示样式及动态数据处理",
+      "contact_cta": "联系客服",
+      "feature_block_title": "产品文档",
+      "cta_title": "更新和混乱",
+      "cta_lead": "过错在于那些盲目的欲望，它们不会出现，过错在于那些放弃职责、软化灵魂的人，也就是那些劳作的人——他们总是像毒药一样，在一天结束时无眠。"
+    },
+    "search": {
+      "no_results": "没有搜索到内容",
+      "placeholder": "搜索内容",
+      "filter_btn": "筛选",
+      "filter_title": "搜索筛选",
+      "filter": {
+        "select_product": {
+          "default_option": "全部产品",
+          "unlimited": "不限",
+          "label": "产品"
+        },
+        "label": "文档筛选",
+        "select_versions": {
+          "label": "版本"
+        }
+      }
+    }
+  },
+  "snippets": {
+    "empty": {
+      "title": "没有找到相关内容",
+      "description": "请尝试其他搜索关键词或浏览其他分类",
+      "button_text": "返回首页"
+    },
+    "feedback_form": {
+      "title": "提交反馈",
+      "message_placeholder": "请输入反馈内容",
+      "message_required": "反馈内容不能为空",
+      "submit": "提交",
+      "cancel": "取消"
+    },
+    "feedback_button": {
+      "title_posted": "感谢您的反馈",
+      "title_unposted": "提交反馈"
+    },
+    "page": {
+      "prev_page": "上一页",
+      "next_page": "下一页"
+    },
+    "header": {
+      "product_index_title": "产品文档",
+      "home": "首页",
+      "profile": "个人信息"
+    },
+    "footer": {
+      "default_description": "感谢您访问 Directify 导航站，我们致力于为您提供最新、最全面的资源和信息。",
+      "powered_by_prefix": "由",
+      "powered_by_suffix": "驱动"
+    },
+    "section": {
+      "page_card": {
+        "view_detail": "查看详情",
+        "external_link": "外链"
+      }
+    }
+  },
+  "generic": {
+    "empty": {
+      "title": "没有找到相关内容",
+      "description": "请尝试其他搜索关键词或浏览其他分类"
+    },
+    "published_at": "发布于",
+    "signout": "退出登录",
+    "signin": "登录 / 注册"
+  },
+  "layout": {
+    "theme": {
+      "search_input_placeholder": "全站搜索...",
+      "search_keywords_label": "热门搜索"
+    }
+  },
+  "paginate": {
+    "previous": "上一页",
+    "next": "下一页",
+    "showing_intro": "当前显示第",
+    "records_unit": "条记录",
+    "total_prefix": "总共"
+  },
+  "ai": {
+    "title": "AI智能助理",
+    "thinking": "正在思考...",
+    "canceled": "已取消回答",
+    "completed": "AI 回答完毕.",
+    "input_placeholder": "请输入你的问题…"
+  },
+  "search": {
+    "placeholder": "搜索..."
+  }
+}

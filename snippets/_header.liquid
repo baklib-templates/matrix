@@ -1,0 +1,110 @@
+{% assign header_menu_html = site.settings.header_menu_html | presence %}
+
+<header class="sticky top-0 z-10 bg-primary text-primary-content">
+  <div class="navbar container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="navbar-start">
+      {% if header_menu_html %}
+        <div class="dropdown">
+          <div
+            tabindex="0"
+            role="button"
+            class="btn btn-ghost lg:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h8m-8 6h16" />
+            </svg>
+          </div>
+          <ul tabindex="-1" class="menu menu-sm dropdown-content rounded-box bg-[var(--header-bg)] z-1 mt-3 w-52 p-2 shadow ">
+            {{ header_menu_html }}
+          </ul>
+        </div>
+      {% endif %}
+
+      {% assign light_logo = site.settings.logo_url %}
+      {% assign dark_logo = site.settings.dark_logo_url %}
+      {% if light_logo %}
+        <a class="h-8 md:h-10" href="{{site.index_path}}">
+          <img class="inline-block dark:hidden h-full object-contain hover:object-scale-down" src="{{ light_logo }}">
+          <img class="hidden dark:inline-block h-full object-contain hover:object-scale-down" src="{{ dark_logo }}">
+        </a>
+      {% else %}
+        <a class="h-8 md:h-10 flex items-center space-x-2" href="{{site.index_path}}">
+          <img class="inline-block dark:hidden h-full object-contain hover:object-scale-down" src="{{ site.favicon_url }}">
+          <span class="text-lg md:text-2xl font-bold whitespace-nowrap overflow-hidden">{{ site.name }}</span>
+        </a>
+      {% endif %}
+
+    </div>
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal px-1">
+        {% if header_menu_html %}
+          {{ header_menu_html }}
+          {% else %}
+          {% comment %} 如果只有一个产品那么就没有展开更多 {% endcomment %}
+          {% comment %} 分组展示等，由用户输入处理 {% endcomment %}
+          <li>
+            <a href="{{site.index_path}}" class='hover:text-white hover:bg-white/10 px-3 py-1 rounded block'>{{ 'snippets.header.home' | t }}</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+    <div class="navbar-end">
+      {% if current_user %}
+        <div class="ml-4 dropdown dropdown-end inline-block relative">
+          <div
+            tabindex="0"
+            role="button"
+            type="button"
+            class="avatar">
+            <div class="w-9 h-9 rounded-full">
+              {% if current_user.image %}
+                <img class='h-full w-full' src="{{ current_user.image | asset_url }}">
+              {% else %}
+                <span class="rounded-full h-full w-full bg-base-300/10 text-white flex items-center justify-center hover:bg-base-300/40 cursor-pointer">
+                  <i class="ri-user-line text-lg"></i>
+                </span>
+              {% endif %}
+            </div>
+          </div>
+          <div tabindex="0" class="dropdown-content text-base mt-2 rounded overflow-hidden bg-base-100 shadow-xl">
+            <ul class="py-2 text-start whitespace-nowrap">
+              <li>
+                <a
+                  class="flex items-center py-2 px-4 hover:text-primary"
+                  href="{{current_user.profile_url}}"
+                  data-discover="true">
+                  <i class="ri-user-3-line mr-2 text-lg"></i>
+                  <span>{{ 'snippets.header.profile' | t }}</span>
+                </a>
+              </li>
+              <li>
+                {% form_tag 'sign_out' %}
+                  <button class='flex items-center py-2 px-4 hover:text-primary cursor-pointer'>
+                    <i class="ri-logout-box-r-line mr-2 text-lg"></i>
+                    <span>{{ 'generic.signout' | t }}</span>
+                  </button>
+                {% endform_tag %}
+              </li>
+            </ul>
+          </div>
+        </div>
+      {% else %}
+        {% form_tag 'sign_in_with_baklib' %}
+          <input
+            type="submit"
+            value="{{ 'generic.signin' | t }}"
+            class="ml-4 btn  btn-sm btn-outline"
+            data-disable-with=" ... ">
+        {% endform_tag %}
+      {% endif %}
+    </div>
+  </div>
+</header>

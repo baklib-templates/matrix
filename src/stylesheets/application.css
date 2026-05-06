@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@import "./_daisyui.css";
+@import "./_base.css" layer(base);
+@import "./_components.css" layer(components);
+@import "./_utilities.css" layer(utilities);
+
+/* 添加这部分 */
+@layer base {
+  html, body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    /* 针对 Webkit 浏览器优化字体渲染，让字体看起来不发虚 */
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+/* tiny-slider */
+@import "tiny-slider/dist/tiny-slider.css";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));

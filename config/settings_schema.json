@@ -1,0 +1,195 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "directify",
+    "theme_label": "t:schema.theme_label",
+    "theme_description": "t:schema.theme_description",
+    "theme_version": "0.0.1",
+    "theme_syntax_version": "v2",
+    "theme_scope": "cms",
+    "theme_author": "Baklib",
+    "theme_documentation_url": "https://help.baklib.cn/theme/directify",
+    "theme_support_url": "https://help.baklib.cn/theme/directify",
+    "theme_thumb_url": "images/thumb.png",
+    "theme_preview_images": [
+      "images/schema/index-1.webp",
+      "images/schema/index-2.webp",
+      "images/schema/index-3.webp",
+      "images/schema/channel.webp",
+      "images/schema/page.webp"
+    ],
+    "theme_languages": [
+      {
+        "name": "中文简体",
+        "value": "zh-CN"
+      },
+      {
+        "name": "English",
+        "value": "en"
+      }
+    ],
+    "recommendations": {
+      "color_schemas": {
+        "scheme1": {
+          "name": "配色方案1",
+          "colors": {
+            "--theme-color-base-100": "#f8f9ff",
+            "--theme-color-base-200": "#f5f7ff",
+            "--theme-color-base-300": "#e6eaf7",
+            "--theme-color-base-content": "#181a1f",
+            "--theme-color-primary": "#e0005b",
+            "--theme-color-primary-content": "#3a1a1c",
+            "--theme-color-secondary": "#e6f7e6",
+            "--theme-color-secondary-content": "#2a1a1c",
+            "--theme-color-accent": "#5fd3b3",
+            "--theme-color-accent-content": "#1a2a1c",
+            "--theme-color-neutral": "#5a5a5a",
+            "--theme-color-neutral-content": "#f8f9ff",
+            "--theme-color-info": "#3a8fff",
+            "--theme-color-info-content": "#f5f7ff",
+            "--theme-color-success": "#4caf50",
+            "--theme-color-success-content": "#f5f7ff",
+            "--theme-color-warning": "#ffc107",
+            "--theme-color-warning-content": "#f5f7ff",
+            "--theme-color-error": "#ff5252",
+            "--theme-color-error-content": "#f5f7ff"
+          }
+        },
+        "scheme2": {
+          "name": "配色方案2",
+          "colors": {
+            "--theme-color-base-100": "#181a2a",
+            "--theme-color-base-200": "#23234a",
+            "--theme-color-base-300": "#2e2e6a",
+            "--theme-color-base-content": "#f5f6fa",
+            "--theme-color-primary": "#4ad7c8",
+            "--theme-color-primary-content": "#2e3a3f",
+            "--theme-color-secondary": "#000000",
+            "--theme-color-secondary-content": "#ffffff",
+            "--theme-color-accent": "#5fd3b3",
+            "--theme-color-accent-content": "#1a2a1c",
+            "--theme-color-neutral": "#3d3d5a",
+            "--theme-color-neutral-content": "#fafbff",
+            "--theme-color-info": "#3a8fff",
+            "--theme-color-info-content": "#f5f7ff",
+            "--theme-color-success": "#4fdc7b",
+            "--theme-color-success-content": "#f6fff9",
+            "--theme-color-warning": "#ffd966",
+            "--theme-color-warning-content": "#fffbe6",
+            "--theme-color-error": "#ff5252",
+            "--theme-color-error-content": "#f5f7ff"
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "t:schema.settings.brand.title",
+    "settings": [
+      {
+        "id": "logo_url",
+        "type": "image_picker",
+        "width": 300,
+        "height": 80,
+        "label": "t:schema.settings.brand.logo_url.label",
+        "info": "t:schema.settings.brand.logo_url.info"
+      },
+      {
+        "id": "dark_logo_url",
+        "type": "image_picker",
+        "width": 300,
+        "height": 80,
+        "label": "t:schema.settings.brand.dark_logo_url.label",
+        "info": "t:schema.settings.brand.dark_logo_url.info"
+      }
+    ]
+  },
+  {
+    "name": "t:schema.settings.contact.title",
+    "settings": [
+      {
+        "id": "contact_info",
+        "type": "textarea",
+        "label": "t:schema.settings.contact.contact_info.label",
+        "info": "t:schema.settings.contact.contact_info.info"
+      },
+      {
+        "id": "site_nav_links",
+        "type": "code",
+        "language": "html",
+        "label": "全站导航链接",
+        "info": "显示在左侧的全站导航链接",
+        "default": "preset:footer_nav_links.html"
+      }
+    ]
+  },
+  {
+    "name": "t:schema.settings.header.title",
+    "settings": [
+      {
+        "id": "header_bg_color",
+        "type": "color",
+        "label": "t:schema.settings.header.header_bg_color.label",
+        "default": "#0d9488"
+      },
+      {
+        "id": "header_text_color",
+        "type": "color",
+        "label": "t:schema.settings.header.header_text_color.label",
+        "default": "#ffffff"
+      },
+      {
+        "id": "header_menu_html",
+        "type": "code",
+        "language": "html",
+        "label": "t:schema.settings.header.header_menu_html.label",
+        "info": "t:schema.settings.header.header_menu_html.info"
+      }
+    ]
+  },
+  {
+    "name": "t:schema.settings.footer.title",
+    "settings": [
+      {
+        "id": "footer_bg_color",
+        "type": "color",
+        "label": "t:schema.settings.footer.footer_bg_color.label",
+        "default": "#ffff",
+        "info": "t:schema.settings.footer.footer_bg_color.info"
+      },
+      {
+        "id": "footer_text_color",
+        "type": "color",
+        "label": "t:schema.settings.footer.footer_text_color.label",
+        "default": "#62748e",
+        "info": "t:schema.settings.footer.footer_text_color.info"
+      },
+      {
+        "id": "footer_description",
+        "type": "textarea",
+        "label": "t:schema.settings.footer.footer_description.label",
+        "info": "t:schema.settings.footer.footer_description.info"
+      },
+      {
+        "id": "copyright",
+        "type": "text",
+        "label": "t:schema.settings.footer.copyright.label",
+        "info": "t:schema.settings.footer.copyright.info",
+        "default": "某某科技"
+      },
+      {
+        "id": "icp_beian",
+        "type": "text",
+        "label": "t:schema.settings.footer.icp_beian.label"
+      },
+      {
+        "id": "footer_nav_links",
+        "type": "code",
+        "language": "html",
+        "label": "t:schema.settings.footer.nav_links.label",
+        "info": "t:schema.settings.footer.nav_links.info",
+        "default": "preset:footer_nav_links.html"
+      }
+    ]
+  }
+]

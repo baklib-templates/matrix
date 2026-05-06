@@ -1,0 +1,102 @@
+{% comment %} AI 搜索结果区域 {% endcomment %}
+{% assign ai_search_title = "ai.title" | t %}
+{% assign ai_search_thinking_text = "ai.thinking" | t %}
+{% assign ai_search_canceled_text = "ai.canceled" | t %}
+
+{% if site.ai_search_enabled? %}
+  <div class='flex-0 hidden md:block' id="js--ai-search-completion-container" data-turbo-permanent>
+    <div class="min-h-0 sticky top-[calc(var(--header-height))] flex-grow-0 order-1 w-full md:order-2 md:w-96" >
+      <div
+        class="py-4 rounded bg-primary/20 space-y-2 chat-container"
+        id="js--ai-search-completion"
+        data-controller="ai-search-completion"
+        md:data-controller="ai-search-completion"
+        data-ai-search-completion-hidden-class="hidden opacity-0"
+        data-ai-search-completion-messages-value='{"thinking":"{{ ai_search_thinking_text }}","completed":"{{ site.settings.ai_search_completed_text | escape_once }}","canceled":"{{ ai_search_canceled_text }}"}'
+        data-ai-search-completion-url-value="/-/ai-search-completion"
+        data-ai-search-completion-auto-submit-value="true"
+        data-ai-search-completion-query-value='{"where": { "template_name_eq": "page", "full_path_start_any": "{{product_full_path}}" }}'
+      >
+        <div class="flex gap-1 items-center px-4 text-sm">
+          <div class="overflow-hidden w-5 h-5 bg-primary bg-primary-to-r rounded-full from-secondary-500 to-primary-600">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
+            </svg>
+          </div>
+          <span>{{ ai_search_title }}</span>
+        </div>
+        <div data-ai-search-completion-target="messages" class="ai-response prose p-4 gap-2 max-h-[50vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+          <!-- 多轮消息将在这里显示 -->
+        </div>
+        <template data-ai-search-completion-target="userMessageTemplate">
+          <div class="flex justify-end items-end mb-2">
+            <div class="flex flex-col items-end flex-1">
+              <div class="bg-primary/60 text-gray-50 px-3 py-2 rounded-2xl max-w-full break-words shadow">
+                <span class="text-sm ai-user-message"></span>
+              </div>
+            </div>
+            <span class="w-8 h-8 ml-2 rounded-full shadow flex items-center justify-center bg-primary/60 text-secondary overflow-hidden">
+              {% if current_user %}
+                <img class='h-full w-full' src="{{ current_user.image | asset_url }}">
+              {% else %}
+                  <!-- 用户 SVG 头像 -->
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="14" cy="14" r="14" fill="currentColor"/>
+                    <circle cx="14" cy="11" r="5" fill="white"/>
+                    <ellipse cx="14" cy="21" rx="7" ry="4" fill="white"/>
+                  </svg>
+              {% endif %}
+            </span>
+          </div>
+        </template>
+        <template data-ai-search-completion-target="assistantMessageTemplate">
+          <div class="flex justify-start items-end mb-2">
+            <span class="w-8 h-8 mr-2 rounded-full shadow flex items-center justify-center bg-gradient-to-r from-secondary-500 to-primary-600">
+              <!-- AI SVG 头像 -->
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="14" cy="14" r="14" fill="currentColor"/>
+                <rect x="8" y="8" width="12" height="12" rx="6" fill="white"/>
+                <circle cx="14" cy="14" r="3" fill="currentColor"/>
+              </svg>
+            </span>
+            <div class="flex flex-col items-start flex-1">
+              <div class="bg-gray-100 text-gray-800 px-3 py-2 rounded-2xl max-w-full break-words shadow">
+                <span class="text-sm ai-assistant-message"></span>
+              </div>
+            </div>
+          </div>
+        </template>
+        <div class="mt-4 flex gap-2 px-4">
+          <input
+            type="text"
+            class="flex-1 p-2 border border-gray-100 rounded focus-visible:outline-primary"
+            placeholder="{{ 'ai.input_placeholder' | t }}"
+            id="js--ai-chat-input"
+            data-ai-search-completion-target="input"
+            autocomplete="off"
+          >
+          <div class="flex items-center justify-center">
+            <button
+              class="rounded-full w-8 h-8 text-primary/60"
+              id="js--ai-chat-send"
+              data-ai-search-completion-target="send"
+              type="button"
+            >
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-full" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C17.52 2 22 6.48 22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2ZM13 12H16L12 8L8 12H11V16H13V12Z"></path></svg>
+            </button>
+          </div>
+        </div>
+        <div data-ai-search-completion-target="error" class="hidden text-red-500 opacity-100 transition-opacity duration-300"></div>
+      </div>
+      <script>
+        (function(){
+          setTimeout(function(){
+            const aiSearchCompletionContainer = document.getElementById('js--ai-search-completion-container');
+            const aiSearchCompletion = document.getElementById('js--ai-search-completion');
+            aiSearchCompletion.dataset.aiSearchCompletionMessageValue = "{{ search.keywords | escape_once }}";
+          }, 1000);
+        })()
+      </script>
+    </div>
+  </div>
+{% endif %}

@@ -1,0 +1,218 @@
+{
+  "templates": {
+    "index": {
+      "name": "官网首页",
+      "description": "首页模版，展示了产品文档库的基本信息和功能",
+      "settings": {
+        "hero_height": {
+          "label": "背景高度",
+          "info": "建议高度：360px"
+        },
+        "hero_image_url": {
+          "label": "背景图",
+          "info": "背景图会根据页面宽度和背景高度自动裁剪"
+        },
+        "hero_bg_color": {
+          "label": "背景色",
+          "info": "首屏背景样式的颜色将依据选择的颜色值进行处理（颜色背景）"
+        },
+        "hero_slogan": {
+          "label": "标语",
+          "info": "标语会显示在背景图上方",
+          "default": "多产品文档库"
+        },
+        "search_hot_keywords": {
+          "label": "热门搜索",
+          "info": "设置以后，搜索框下方会显示热门搜索。换行设置多个关键词"
+        },
+        "channels_section_title": {
+          "label": "第一个板块标题",
+          "default": "文档导览"
+        },
+        "hero_html": {
+          "label": "Hero HTML 内容"
+        }
+      }
+    },
+    "channel": {
+      "name": "栏目",
+      "description": "栏目列表页面模板"
+    },
+    "directify_page": {
+      "name": "页面",
+      "description": "产品/公司/项目页面模板",
+      "settings": {
+        "version": {
+          "label": "导入批次/版本"
+        },
+        "title": {
+          "label": "公司/产品名称"
+        },
+        "brand_name": {
+          "label": "品牌名称"
+        },
+        "original_url": {
+          "label": "外部网址"
+        },
+        "tags": {
+          "label": "标签"
+        },
+        "keywords": {
+          "label": "关键词"
+        },
+        "icon": {
+          "label": "ICON 图标"
+        },
+        "icon_url": {
+          "label": "ICON 图标外部链接"
+        },
+        "logo": {
+          "label": "LOGO 图片"
+        },
+        "logo_url": {
+          "label": "LOGO 图标外部链接"
+        },
+        "html_content": {
+          "label": "HTML 页面内容"
+        }
+      }
+    },
+    "post_detail": {
+      "name": "Post 详情页面",
+      "description": "通用详情页面模板",
+      "settings": {
+        "tags": {
+          "label": "标签"
+        },
+        "html_content": {
+          "label": "HTML 页面内容"
+        },
+        "content_type": {
+          "choice_richtext": "富文本",
+          "choice_html": "HTML"
+        }
+      }
+    },
+    "page": {
+      "name": "文档页面模版",
+      "description": "展示文档页面模板",
+      "settings": {
+        "title": {
+          "label": "标题"
+        },
+        "description": {
+          "label": "描述"
+        },
+        "content": {
+          "label": "内容",
+          "info": ""
+        }
+      }
+    },
+    "product_index": {
+      "name": "产品文档分类模版",
+      "description": "用于区分不同的产品文档",
+      "settings": {
+        "title": {
+          "label": "文档分类标题"
+        },
+        "description": {
+          "label": "描述"
+        },
+        "icon": {
+          "label": "文档分类icon",
+          "info": "用于首页、分类检索等位置展示icon"
+        },
+        "thumb_image_url": {
+          "label": "产品文档页面中美化缩略图"
+        },
+        "content_html": {
+          "label": "产品文档详细描述（html）",
+          "info": ""
+        },
+        "content_type": {
+          "label": "产品文档详细描述的输入方式",
+          "info ": "* 选择输入方式。\n*  富文本 - 使用富文本编辑器输入内容。\n*  HTML - 使用 HTML 代码输入内容。"
+        },
+        "content_richtext": {
+          "label": "产品文档详细描述（富文本）",
+          "info": ""
+        }
+      }
+    },
+    "version_index": {
+      "name": "产品文档下不同的版本模版",
+      "description": "用于区分不同的产品文档版本；例如：v1.0、v2.0等",
+      "settings": {
+        "title": {
+          "label": "版本名称"
+        }
+      }
+    },
+    "index_preview": {
+      "name": "演示首页",
+      "description": "演示首页模版，展示了产品文档库的基本信息和功能"
+    }
+  },
+  "theme_label": "目录站、数据集、文档库",
+  "theme_description": "用于构建同类型多分类的数据集库、目录、各种大型集合类知识库。",
+  "settings": {
+    "brand": {
+      "title": "品牌相关",
+      "logo_url": {
+        "label": "亮色 Logo 图片",
+        "info": "网站亮色 Logo 建议尺寸 300x80"
+      },
+      "dark_logo_url": {
+        "label": "暗色 Logo 图片",
+        "info": "网站暗色 Logo 建议尺寸 300x80"
+      }
+    },
+    "contact": {
+      "title": "联系方式",
+      "contact_info": {
+        "label": "联系地址/电话",
+        "info": "多行文本，可填写联系地址和电话等信息"
+      }
+    },
+    "header": {
+      "title": "顶部导航栏",
+      "header_bg_color": {
+        "label": "顶部导航栏背景色"
+      },
+      "header_text_color": {
+        "label": "顶部导航栏文字颜色"
+      },
+      "header_menu_html": {
+        "label": "顶部导航栏",
+        "info": "Head HTML 配置，可填写导航栏链接"
+      }
+    },
+    "footer": {
+      "title": "网站底部",
+      "footer_bg_color": {
+        "label": "底部背景色",
+        "info": "建议使用深色背景，如 #181a2a"
+      },
+      "footer_text_color": {
+        "label": "底部文字色",
+        "info": "建议使用浅色文字，如 #e5e7eb"
+      },
+      "footer_description": {
+        "label": "网站描述",
+        "info": "比如一句话描述公司或产品的理念"
+      },
+      "copyright": {
+        "label": "版权信息",
+        "info": "如：某公司版权所有"
+      },
+      "icp_beian": {
+        "label": "备案号"
+      },
+      "nav_links": {
+        "label": "底部导航栏",
+        "info": "多行文本，可填写导航栏链接"
+      }
+    }
+  }
+}

@@ -1,0 +1,198 @@
+
+
+{% if page.settings.icon %}
+  {% assign icon_url = page.settings.icon %}
+{% elsif page.settings.icon_url %}
+  {% assign icon_url = page.settings.icon_url %}
+{% elsif page.settings.logo %}
+  {% assign icon_url = page.settings.logo %}
+{% elsif page.settings.logo_url %}
+  {% assign icon_url = page.settings.logo_url %}
+{% endif %}
+
+<main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="mb-4">
+    {% render 'breadcrumb', breadcrumb: page.breadcrumb %}
+  </div>
+  <div class="md:flex md:space-x-6">
+
+    <div class="md:w-1/4 mb-6 md:mb-0">
+      <div class="glass-card p-6 rounded-2xl sticky top-20 z-10 mb-6">
+				{% if icon_url %}
+          <div class="mb-4">
+            <img
+              src="{{ icon_url }}"
+              alt="{{ page.link_text }}"
+              class="mx-auto h-20 object-contain" />
+          </div>
+        {% endif %}
+        <h2 class="text-xl font-bold text-gray-900 mb-2">{{ page.link_text }}</h2>
+				<div class="flex space-x-2 mb-2">
+					{% if page.settings.original_url %}
+            <a href="{{ page.settings.original_url }}" target="_blank" class="flex items-center space-x-2 text-base font-semibold text-blue-600 hover:underline whitespace-nowrap overflow-hidden text-ellipsis">
+              🔗<span>{{ page.settings.original_url }}</span>
+            </a>
+					{% endif %}
+
+          </div>
+        <div class="relative mb-5 text-sm text-gray-500 line-clamp-3">
+          {{ page.settings.description }}
+        </div>
+
+        {% comment %} 反馈 {% endcomment %}
+        <section class="my-4">
+          {% render 'feedback_button', page: page %}
+        </section>
+        
+        
+      </div>
+
+			<div class="hidden md:block glass-card p-6 rounded-2xl z-0">
+        <h2 class="text-xl font-bold text-gray-900 mb-5">{{ 'templates.page.site_nav' | t }}</h2>
+        <div class="relative mb-5">
+          {% render 'search_block' %}
+        </div>
+        {{ site.settings.site_nav_links | raw }}
+      </div>
+    </div>
+
+    <div class="md:w-3/4">
+			{% render 'page', page: page %}
+
+      <section class="bg-gray-50 p-4 rounded-2xl">
+        <h2 class="text-xl font-medium mb-2 flex items-center space-x-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 0 0-1.883 2.542l.857 6a2.25 2.25 0 0 0 2.227 1.932H19.05a2.25 2.25 0 0 0 2.227-1.932l.857-6a2.25 2.25 0 0 0-1.883-2.542m-16.5 0V6A2.25 2.25 0 0 1 6 3.75h3.879a1.5 1.5 0 0 1 1.06.44l2.122 2.12a1.5 1.5 0 0 0 1.06.44H18A2.25 2.25 0 0 1 20.25 9v.776" />
+          </svg></h2>
+        {% render 'post_list', page: page %}
+      </section>
+
+      {% comment %} 页内目录导航 {% endcomment %}
+      <section class="my-8">
+        {% assign prev_page = page.prev_page %}
+        {% assign next_page = page.next_page %}
+
+        <div class="items-center justify-between space-y-3 lg:flex lg:space-y-0 lg:space-x-6 print:hidden">
+          {% if prev_page %}
+            <a href="{{ prev_page.path }}" class="block flex-1 rounded-lg bg-base-200 p-3 hover:bg-base-300">
+              <div class="mb-2 text-base-content/40 text-sm">{{ 'snippets.page.prev_page' | t }}</div>
+              <div class="text-base text-primary">
+                <div class="flex items-center space-x-1 line-clamp-1">
+                  <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10.8284 12.0007L15.7782 16.9504L14.364 18.3646L8 12.0007L14.364 5.63672L15.7782 7.05093L10.8284 12.0007Z"></path></svg>
+                  <span class="line-clamp-1">{{ prev_page.link_text }}</span>
+                </div>
+              </div>
+            </a>
+          {% else %}
+            <div class="flex-1"></div>
+          {% endif %}
+          <!-- Next link -->
+          {% if next_page %}
+            <a href="{{ next_page.path }}" class="block flex-1 rounded-lg bg-base-200 p-3 hover:bg-base-300">
+              <div class="mb-2 text-base-content/40 md:text-right text-sm">{{ 'snippets.page.next_page' | t}}</div>
+              <div class="text-base text-primary">
+                <div class="flex items-center space-x-1 lg:justify-end line-clamp-1">
+                  <span class="line-clamp-1">{{ next_page.link_text }}</span>
+                  <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z"></path></svg>
+                </div>
+              </div>
+            </a>
+          {%  else %}
+            <div class="flex-1"></div>
+          {% endif %}
+        </div>
+      </section>
+    </div>
+
+
+    
+  </div>
+</main>
+
+{% schema %}
+  {
+    "name": "t:schema.templates.directify_page.name",
+    "description": "t:schema.templates.directify_page.description",
+    "thumb_url": "images/schema/page.webp",
+    "preview_image_urls": [
+      "images/schema/page.webp"
+    ],
+    "sub_page_templates": ["post"],
+    "settings": [
+			{
+        "id": "version",
+        "type": "text",
+        "label": "t:schema.templates.directify_page.settings.version.label",
+        "queryable": true
+      },
+			{
+        "id": "title",
+        "type": "text",
+        "label": "t:schema.templates.directify_page.settings.title.label"
+      },
+			{
+        "id": "brand_name",
+        "type": "text",
+        "label": "t:schema.templates.directify_page.settings.brand_name.label"
+      },
+			{
+        "id": "original_url",
+        "type": "text",
+        "label": "t:schema.templates.directify_page.settings.original_url.label"
+      },
+			{
+        "id": "description",
+        "type": "textarea",
+        "label": "t:schema.templates.page.settings.description.label"
+      },
+			{
+        "id": "tags",
+        "type": "tag_picker",
+        "multiple": true,
+        "queryable": true,
+        "label": "t:schema.templates.directify_page.settings.tags.label"
+      },
+			{
+        "id": "keywords",
+        "type": "text",
+        "label": "t:schema.templates.directify_page.settings.keywords.label"
+      },
+      {
+        "id": "icon",
+        "type": "image_picker",
+        "ratio": "1:1",
+        "width": 200,
+        "label": "t:schema.templates.directify_page.settings.icon.label"
+      },
+			{
+        "id": "icon_url",
+        "type": "text",
+        "label": "t:schema.templates.directify_page.settings.icon_url.label"
+      },
+			{
+        "id": "logo",
+        "type": "image_picker",
+        "ratio": "16:9",
+        "width": 200,
+        "label": "t:schema.templates.directify_page.settings.logo.label"
+      },
+			{
+        "id": "logo_url",
+        "type": "text",
+        "label": "t:schema.templates.directify_page.settings.logo_url.label"
+      },
+			{
+        "id": "html_content",
+        "type": "html",
+        "label": "t:schema.templates.directify_page.settings.html_content.label"
+      },
+			{
+				"id": "content",
+				"type": "richtext",
+				"label": "t:schema.templates.page.settings.content.label",
+				"readonly": false,
+				"info": "t:schema.templates.page.settings.content.info"
+			}
+    ]
+  }
+{% endschema %}

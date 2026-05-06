@@ -1,0 +1,76 @@
+site:
+  language: "zh-CN"
+  time_zone: "Asia/Shanghai"
+  favicon: "images/thumb.png"
+  settings:
+    logo_url: "images/logo.svg"
+    dark_logo_url: "images/logo.svg"
+    contact_info: |
+      Directify 演示导航站：聚合常用头部站点入口，便于一键跳转与站内检索。
+      内容仅供演示，链接指向各品牌官方网站。
+    header_bg_color: "#0f172a"
+    header_text_color: "#ffffff"
+    header_menu_html: |
+      <li><a href="/search" class="hover:text-white hover:bg-white/10 px-3 py-1 rounded block">搜索引擎</a></li>
+      <li><a href="/ai" class="hover:text-white hover:bg-white/10 px-3 py-1 rounded block">AI 与智能</a></li>
+      <li><a href="/consumer" class="hover:text-white hover:bg-white/10 px-3 py-1 rounded block">消费与生态</a></li>
+      <li><a href="/cn-cloud" class="hover:text-white hover:bg-white/10 px-3 py-1 rounded block">中国云与互联网</a></li>
+    site_nav_links: |
+      <nav class="space-y-2 text-sm text-slate-700">
+        <div class="font-semibold text-slate-900 mb-2">快速入口</div>
+        <a class="block py-1.5 px-2 rounded hover:bg-slate-100" href="/search">搜索引擎</a>
+        <a class="block py-1.5 px-2 rounded hover:bg-slate-100" href="/ai">AI 与智能</a>
+        <a class="block py-1.5 px-2 rounded hover:bg-slate-100" href="/consumer">消费与生态</a>
+        <a class="block py-1.5 px-2 rounded hover:bg-slate-100" href="/cn-cloud">中国云与互联网</a>
+        <div class="font-semibold text-slate-900 mt-4 mb-2">热门站点</div>
+        <a class="block py-1.5 px-2 rounded hover:bg-slate-100" href="/search/google">Google</a>
+        <a class="block py-1.5 px-2 rounded hover:bg-slate-100" href="/search/baidu">百度</a>
+        <a class="block py-1.5 px-2 rounded hover:bg-slate-100" href="/ai/openai">OpenAI</a>
+        <a class="block py-1.5 px-2 rounded hover:bg-slate-100" href="/cn-cloud/tencent">腾讯</a>
+      </nav>
+    footer_bg_color: "#1e293b"
+    footer_text_color: "#94a3b8"
+    footer_description: |
+      Directify 是面向 Baklib CMS 的导航与聚合展示主题。本站种子数据用于演示栏目、页面与外链按钮的编排方式。
+    copyright: "Directify 演示导航"
+    icp_beian: ""
+    footer_nav_links: |
+      <div class="grid sm:grid-cols-12 gap-8 py-8 md:py-12 text-slate-600">
+        <div class="sm:col-span-12 lg:col-span-4 lg:max-w-xs">
+          <div class="text-lg font-bold text-slate-100 mb-2">Directify</div>
+          <p class="text-sm leading-relaxed">精选全球与中国头部站点入口，支持侧栏导航与卡片列表。</p>
+        </div>
+        <div class="sm:col-span-6 md:col-span-3 lg:col-span-2">
+          <h6 class="text-sm text-slate-200 font-semibold mb-2">栏目</h6>
+          <ul class="text-sm font-medium space-y-2">
+            <li><a class="hover:text-indigo-400 transition" href="/search">搜索引擎</a></li>
+            <li><a class="hover:text-indigo-400 transition" href="/ai">AI 与智能</a></li>
+            <li><a class="hover:text-indigo-400 transition" href="/consumer">消费与生态</a></li>
+            <li><a class="hover:text-indigo-400 transition" href="/cn-cloud">中国云与互联网</a></li>
+          </ul>
+        </div>
+        <div class="sm:col-span-6 md:col-span-3 lg:col-span-2">
+          <h6 class="text-sm text-slate-200 font-semibold mb-2">全球</h6>
+          <ul class="text-sm font-medium space-y-2">
+            <li><a class="hover:text-indigo-400 transition" href="/search/google">Google</a></li>
+            <li><a class="hover:text-indigo-400 transition" href="/ai/openai">OpenAI</a></li>
+            <li><a class="hover:text-indigo-400 transition" href="/ai/microsoft">微软</a></li>
+            <li><a class="hover:text-indigo-400 transition" href="/consumer/apple">苹果</a></li>
+          </ul>
+        </div>
+        <div class="sm:col-span-6 md:col-span-3 lg:col-span-2">
+          <h6 class="text-sm text-slate-200 font-semibold mb-2">中国</h6>
+          <ul class="text-sm font-medium space-y-2">
+            <li><a class="hover:text-indigo-400 transition" href="/search/baidu">百度</a></li>
+            <li><a class="hover:text-indigo-400 transition" href="/cn-cloud/aliyun">阿里云</a></li>
+            <li><a class="hover:text-indigo-400 transition" href="/cn-cloud/tencent">腾讯</a></li>
+          </ul>
+        </div>
+        <div class="sm:col-span-6 md:col-span-3 lg:col-span-2">
+          <h6 class="text-sm text-slate-200 font-semibold mb-2">关于</h6>
+          <ul class="text-sm font-medium space-y-2">
+            <li><a class="hover:text-indigo-400 transition" href="/">首页</a></li>
+            <li><a class="hover:text-indigo-400 transition" href="https://www.baklib.com" target="_blank" rel="noopener noreferrer">Baklib</a></li>
+          </ul>
+        </div>
+      </div>

@@ -1,0 +1,49 @@
+{% if version_page == nil %}
+  {% assign nav_tree = product_page.nav_tree %}
+{% else %}
+  {% assign nav_tree = version_page.nav_tree %}
+{% endif %}
+
+{% query product_pages from site.pages %}
+  {
+    "where": {
+      "template_name_eq": "product_index"
+    },
+    "order_by": "-published_at"
+  }
+{% endquery %}
+
+<aside class="hidden lg:block relative border-r border-slate-200 z-10">
+  <div class="sticky top-[var(--header-height)] h-[calc(100vh-var(--header-height))] max-h-[calc(100vh-var(--header-height))] bg-ac1cent">
+    <div class='flex flex-col h-full space-y-3 px-2'>
+      {% comment %} top block {% endcomment %}
+      <div class='flex pt-4'>
+        <a class='flex-1 flex items-center space-x-2' href="{{product_page.path}}">
+          {% if product_page.settings.icon %}
+            <img src="{{ product_page.settings.icon | asset_url }}" alt="icon" class="w-6 h-6 rounded object-cover" />
+          {% endif %}
+          <span class='line-clamp-1'>{{ product_page.link_text }}</span>
+        </a>
+        <div class='flex-0 flex items-center'>
+          {% comment %} 切换产品 {% endcomment %}
+          {% render 'left_sidebar/btn_check_product', product_page: product_page, product_pages: product_pages %}
+        </div>
+      </div>
+
+      {% comment %} version block {% endcomment %}
+      {% assign version_size = version_pages | size %}
+      {% if version_size > 0 %}
+        {% render 'left_sidebar/btn_check_version', product_page: product_page, version_pages: version_pages, version_page: version_page %}
+      {% endif %}
+
+      {% comment %} navtree block {% endcomment %}
+      {% comment %} 产品页下如果没有版本，那么就用产品的目录导航 {% endcomment %}
+
+      <div class="flex-1 min-h-0">
+        <div class="overflow-auto h-full">
+				  {% render 'nav_tree', nav_tree: nav_tree %}
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>

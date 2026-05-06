@@ -1,0 +1,149 @@
+{
+  "templates": {
+    "page": {
+      "copy_success": "Link copied",
+      "page_toc": "This page's table of contents",
+      "site_nav": "Site navigation"
+    },
+    "index": {
+      "category_nav": "Categories",
+      "show_all": "Show all",
+      "version_tags_title": "Version tags",
+      "featured_products_title": "Recommended Products",
+      "tag_cloud_title": "Tag Cloud",
+      "no_tags": "No tags yet"
+    },
+    "channel": {
+      "show_all": "Show all"
+    },
+    "tag": {
+      "empty": "No content yet."
+    },
+    "directify_page": {
+      "settings": {
+        "title": {
+          "label": "Title"
+        },
+        "version": {
+          "label": "Version"
+        },
+        "brand_name": {
+          "label": "Brand"
+        },
+        "original_url": {
+          "label": "External URL"
+        },
+        "description": {
+          "label": "Description"
+        }
+      }
+    },
+    "index_preview": {
+      "hero_title": "Extend your homepage style and data",
+      "hero_lead": "This template is a multi-product documentation hub. Manage and present multiple product docs in one site, each with its own versions and a unified front end.",
+      "hero_bullet_1": "- The current homepage is a demo style",
+      "hero_bullet_2": "- Customize the homepage in the theme editor or contact support for a tailored template",
+      "hero_bullet_3": "- Other pages already include standard layouts and dynamic data",
+      "contact_cta": "Contact support",
+      "feature_block_title": "Product docs",
+      "cta_title": "Updates and change",
+      "cta_lead": "Fault lies not in blind desire alone, but in duty abandoned and resolve softened—in those who toil yet lie awake as if poisoned when the day ends."
+    },
+    "search": {
+      "no_results": "No results found",
+      "placeholder": "Search content",
+      "filter_btn": "Filter",
+      "filter_title": "Search filter",
+      "filter": {
+        "select_product": {
+          "default_option": "All products",
+          "unlimited": "Any",
+          "label": "Product"
+        },
+        "label": "Document filtering",
+        "select_versions": {
+          "label": "Version"
+        }
+      }
+    }
+  },
+  "snippets": {
+    "empty": {
+      "title": "No relevant content found",
+      "description": "Please try other search keywords or browse other categories",
+      "button_text": "Back to home"
+    },
+    "feedback_form": {
+      "title": "Submit feedback",
+      "message_placeholder": "Please enter feedback content",
+      "message_required": "Feedback cannot be empty",
+      "submit": "Submit",
+      "cancel": "Cancel"
+    },
+    "feedback_button": {
+      "title_posted": "Thank you for your feedback",
+      "title_unposted": "Submit feedback"
+    },
+    "page": {
+      "prev_page": "Previous page",
+      "next_page": "Next page"
+    },
+    "header": {
+      "product_index_title": "Documentation",
+      "home": "Home",
+      "profile": "Profile"
+    },
+    "footer": {
+      "default_description": "Thank you for visiting the Directify demo. We help you reach the latest resources and information.",
+      "powered_by_prefix": "Powered by ",
+      "powered_by_suffix": ""
+    },
+    "section": {
+      "page_card": {
+        "view_detail": "Details",
+        "external_link": "Link"
+      }
+    }
+  },
+  "generic": {
+    "empty": {
+      "title": "No relevant content found",
+      "description": "Please try other search keywords or browse other categories"
+    },
+    "published_at": "Published on",
+    "signout": "Log out",
+    "signin": "Log in / Register"
+  },
+  "layout": {
+    "theme": {
+      "search_input_placeholder": "Search the site…",
+      "search_keywords_label": "Popular searches"
+    }
+  },
+  "paginate": {
+    "previous": "Previous page",
+    "next": "Next page",
+    "showing_intro": "Showing",
+    "records_unit": "records",
+    "total_prefix": "Total"
+  },
+  "shared": {
+    "templates": {
+      "search": {
+        "ai_search_title": "",
+        "ai_search_thinking_text": "",
+        "ai_search_canceled_text": ""
+      }
+    }
+  },
+  "ai": {
+    "title": "AI assistant",
+    "thinking": "Thinking…",
+    "canceled": "Answer cancelled",
+    "completed": "AI finished answering.",
+    "input_placeholder": "Type your question…"
+  },
+  "search": {
+    "placeholder": "Search..."
+  }
+}

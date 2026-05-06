@@ -1,0 +1,72 @@
+
+{% if page.settings.logo %}
+  {% assign icon_url = page.settings.logo %}
+{% elsif page.settings.icon %}
+  {% assign icon_url = page.settings.icon %}
+{% elsif page.settings.logo_url %}
+  {% assign icon_url = page.settings.logo_url %}
+{% elsif page.settings.icon_url %}
+  {% assign icon_url = page.settings.icon_url %}
+{% endif %}
+
+<article class="">
+  {% comment %} 作者和发布时间 {% endcomment %}
+  {% if site.settings.show_author or site.settings.show_published_at %}
+    <section class="mb-6 mt-2">
+      {% if site.settings.show_author and site.settings.show_published_at %}
+        <div class="flex items-center space-y-2">
+          <div class="flex items-center space-x-2">
+            {% render 'avatar', url: page.author.avatar_url, name: page.author.name %}
+            <div class="flex flex-col space-y-0.5">
+              <span class="text-xs">{{ page.author.name }}</span>
+              <span class="text-xs text-slate-400">{{ 'generic.published_at' | t }}: {{ page.published_at | date: "%Y-%m-%d" }}</span>
+            </div>
+          </div>
+        </div>
+      {% elsif site.settings.show_author %}
+        {% render 'avatar_with_name', url: page.author.avatar_url, name: page.author.name %}
+      {% elsif site.settings.show_published_at %}
+        <p class="text-sm text-base-content/50 text-md">{{ 'generic.published_at' | t }}: {{ page.published_at | date: "%Y-%m-%d" }}</p>
+      {% endif %}
+    </section>
+  {% endif %}
+
+  {% comment %} 标题 {% endcomment %}
+  {% assign title = page.settings.title | presence %}
+  {% if title %}
+    <header class="pl-2 py-1 mb-2">
+      <h1 class="text-xl font-bold md:text-2xl lg:text-4xl">
+        {{ title }}
+      </h1>
+    </header>
+  {% endif %}
+
+  {% comment %} 标签 {% endcomment %}
+  {% if page.settings.tags and page.settings.tags.size > 0 %}
+    <section class="flex flex-wrap items-center gap-2 mb-4 px-4">
+      {% for tag in page.settings.tags %}
+        {% render 'section/tag', tag: tag %}
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  {% comment %} 摘要 {% endcomment %}
+  {% assign description = page.settings.description | presence %}
+  {% if description %}
+    <section class="mb-4">
+      <blockquote class="italic rounded-lg p-4 bg-base-200 text-base-content">
+        <p>{{ description }}</p>
+      </blockquote>
+    </section>
+  {% endif %}
+
+  {% comment %} 内容 {% endcomment %}
+  <section id="page-content" class="ProseMirror flex-1" data-controller="link-target images-viewer" data-toc-target="content">
+    {% if icon_url %}
+      <div class="float-left mr-4 mb-2">
+        <img src="{{ icon_url }}" alt="{{ page.link_text }}" class="object-contain" />
+      </div>
+    {% endif %}
+    {{ page.settings.content }}
+  </section>
+</article>

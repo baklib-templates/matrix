@@ -1,0 +1,67 @@
+<div class="overflow-x-auto bg-white rounded-2xl shadow-sm border border-slate-200">
+  <table class="min-w-full divide-y divide-slate-200">
+    <thead class="bg-slate-50/50">
+      <tr>
+        <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">
+          {{ 'templates.directify_page.settings.title.label' | t: '标题' }}
+        </th>
+        <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">
+          {{ 'templates.directify_page.settings.version.label' | t: '版本' }}
+        </th>
+        <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">
+          {{ 'templates.directify_page.settings.brand_name.label' | t: '品牌' }}
+        </th>
+        <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">
+          {{ 'templates.directify_page.settings.original_url.label' | t: '外部链接' }}
+        </th>
+        <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">
+          {{ 'templates.directify_page.settings.description.label' | t: '描述' }}
+        </th>
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-slate-100">
+      {% for item in pages %}
+        <tr class="hover:bg-slate-50/80 transition-all duration-200 group">
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center">
+              <div class="flex-shrink-0 h-10 w-10 rounded-xl bg-slate-50 flex items-center justify-center mr-4 border border-slate-100 group-hover:bg-primary/5 group-hover:border-primary/20 transition-all">
+                 {% assign icon_url = item.settings.icon | default: item.settings.icon_url | default: item.settings.logo | default: item.settings.logo_url %}
+                 {% if icon_url %}
+                    <img class="h-7 w-7 object-contain p-0.5" src="{{ icon_url }}" alt="">
+                 {% else %}
+                    <span class="text-xl">📄</span>
+                 {% endif %}
+              </div>
+              <a href="{{ item.path }}" class="text-sm font-bold text-slate-900 group-hover:text-primary transition-colors">
+                {{ item.link_text }}
+              </a>
+            </div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-600 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+              {{ item.settings.version | default: '-' }}
+            </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600 font-medium">
+            {{ item.settings.brand_name | default: '-' }}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm">
+            {% if item.settings.original_url != blank %}
+              <a href="{{ item.settings.original_url }}" target="_blank" class="inline-flex items-center text-primary font-semibold hover:underline group/link">
+                <span class="mr-1">{{ item.settings.original_url }}</span>
+                <svg class="w-3.5 h-3.5 transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+              </a>
+            {% else %}
+              <span class="text-slate-400">-</span>
+            {% endif %}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
+            {{ item.settings.description |  truncate: 60 }}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

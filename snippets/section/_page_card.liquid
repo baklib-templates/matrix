@@ -1,0 +1,72 @@
+{% if page.settings.icon %}
+  {% assign icon_url = page.settings.icon %}
+{% elsif page.settings.icon_url %}
+  {% assign icon_url = page.settings.icon_url %}
+{% elsif page.settings.logo %}
+  {% assign icon_url = page.settings.logo %}
+{% elsif page.settings.logo_url %}
+  {% assign icon_url = page.settings.logo_url %}
+{% endif %}
+
+<div class="group relative glass-card rounded-2xl overflow-hidden h-full flex flex-col">
+  <!-- Gradient Background from top-right to bottom-left -->
+  <div class="absolute inset-0 bg-gradient-to-bl from-primary/10 via-transparent to-transparent pointer-events-none opacity-60"></div>
+
+  <!-- Phantom Icon in Top Right -->
+  {% if icon_url %}
+    <div class="absolute -top-6 -right-6 w-32 h-32 opacity-[0.06] pointer-events-none transform rotate-[15deg] transition-transform duration-700 group-hover:scale-110 group-hover:rotate-[20deg]">
+      <img src="{{ icon_url }}" alt="" class="w-full h-full object-contain filter grayscale brightness-0 opacity-80" />
+    </div>
+  {% endif %}
+
+  <!-- Card Content -->
+  <div class="p-5 flex-1 relative z-10">
+    <div class="flex items-center space-x-3 mb-4">
+      {% if icon_url %}
+        <div class="w-11 h-11 rounded-full overflow-hidden bg-primary/5 p-1.5 flex items-center justify-center flex-shrink-0 ring-1 ring-primary/10 group-hover:ring-primary/20 transition-all">
+          <img src="{{ icon_url }}" alt="{{ page.link_text }}" class="w-full h-full object-contain" />
+        </div>
+      {% endif %}
+      <h3 class="font-bold text-slate-900 text-lg line-clamp-1 group-hover:text-primary transition-colors duration-300">
+        {{ page.link_text }}
+      </h3>
+    </div>
+
+    <p class="text-slate-500 text-sm leading-relaxed line-clamp-3 mb-4">
+      {{ page.settings.description }}
+    </p>
+
+    {% if page.settings.tags %}
+      <div class="flex flex-wrap gap-2">
+        {% for tag in page.settings.tags %}
+          {% render 'section/tag', tag: tag %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Optional version tag from original design -->
+  {% if page.settings.version %}
+    <span class="absolute top-4 right-4 bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider z-20">
+      {{ page.settings.version }}
+    </span>
+  {% endif %}
+
+  <!-- Footer Actions -->
+  <div class="px-5 py-4 border-t border-slate-50/50 mt-auto flex justify-between items-center relative z-10 bg-slate-50/30">
+    <a href="{{ page.path }}" class="text-sm font-medium text-slate-600 hover:text-primary transition-colors flex items-center space-x-1">
+      <span>{{ 'snippets.section.page_card.view_detail' | t }}</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </a>
+    
+    {% if page.settings.original_url %}
+      <a href="{{ page.settings.original_url }}" target="_blank" class="p-2 text-slate-400 hover:text-primary transition-colors hover:bg-primary/10 rounded-lg" title="Open Original URL">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+        </svg>
+      </a>
+    {% endif %}
+  </div>
+</div>

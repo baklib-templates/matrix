@@ -1,0 +1,218 @@
+{
+  "templates": {
+    "index": {
+      "name": "Official website homepage",
+      "description": "The homepage template displays the basic information and functions of the product document library",
+      "settings": {
+        "hero_height": {
+          "label": "Background height",
+          "info": "Suggested height: 360px"
+        },
+        "hero_image_url": {
+          "label": "Background image",
+          "info": "The background image will be automatically cropped based on the page width and background height"
+        },
+        "hero_bg_color": {
+          "label": "background color",
+          "info": "The color of the first screen background style will be processed based on the selected color value (color background)"
+        },
+        "hero_slogan": {
+          "label": "slogan",
+          "info": "The slogan will be displayed above the background image",
+          "default": "Multi product document library"
+        },
+        "search_hot_keywords": {
+          "label": "HOT",
+          "info": "After setting, popular searches will be displayed below the search box. Set multiple keywords for line breaks"
+        },
+        "channels_section_title": {
+          "label": "Title of the first section",
+          "default": "Document Guide"
+        },
+        "hero_html": {
+          "label": "Hero HTML content"
+        }
+      }
+    },
+    "channel": {
+      "name": "Section",
+      "description": "Section listing template"
+    },
+    "directify_page": {
+      "name": "Page",
+      "description": "Product, company, or project page template",
+      "settings": {
+        "version": {
+          "label": "Import batch / version"
+        },
+        "title": {
+          "label": "Company / product name"
+        },
+        "brand_name": {
+          "label": "Brand name"
+        },
+        "original_url": {
+          "label": "External URL"
+        },
+        "tags": {
+          "label": "Tags"
+        },
+        "keywords": {
+          "label": "Keywords"
+        },
+        "icon": {
+          "label": "Icon"
+        },
+        "icon_url": {
+          "label": "Icon image URL"
+        },
+        "logo": {
+          "label": "Logo image"
+        },
+        "logo_url": {
+          "label": "Logo image URL"
+        },
+        "html_content": {
+          "label": "HTML page content"
+        }
+      }
+    },
+    "post_detail": {
+      "name": "Post detail",
+      "description": "Generic detail page template",
+      "settings": {
+        "tags": {
+          "label": "Tags"
+        },
+        "html_content": {
+          "label": "HTML page content"
+        },
+        "content_type": {
+          "choice_richtext": "Rich text",
+          "choice_html": "HTML"
+        }
+      }
+    },
+    "page": {
+      "name": "Document page template",
+      "description": "Display document page template",
+      "settings": {
+        "title": {
+          "label": "title"
+        },
+        "description": {
+          "label": "describe"
+        },
+        "content": {
+          "label": "content",
+          "info": ""
+        }
+      }
+    },
+    "product_index": {
+      "name": "Product Document Classification Template",
+      "description": "Used to distinguish different product documents",
+      "settings": {
+        "title": {
+          "label": "Document classification title"
+        },
+        "description": {
+          "label": "describe"
+        },
+        "icon": {
+          "label": "Document classification icon",
+          "info": "Used for displaying icons on homepage, category search, and other locations"
+        },
+        "thumb_image_url": {
+          "label": "Beautify thumbnail in product documentation page"
+        },
+        "content_html": {
+          "label": "Product documentation detailed description (HTML)",
+          "info": ""
+        },
+        "content_type": {
+          "label": "Input method for detailed description of product documentation",
+          "info ": "*Select input method."
+        },
+        "content_richtext": {
+          "label": "Product documentation detailed description (rich text)",
+          "info": ""
+        }
+      }
+    },
+    "version_index": {
+      "name": "Different version templates under product documentation",
+      "description": "Used to distinguish different product document versions; For example: v1.0, v2.0, etc",
+      "settings": {
+        "title": {
+          "label": "Version Name"
+        }
+      }
+    },
+    "index_preview": {
+      "name": "Demo homepage",
+      "description": "Demo homepage template, showcasing the basic information and functions of the product documentation library"
+    }
+  },
+  "theme_label": "Directly，Library & Documentation Theme",
+  "theme_description": "Use for building data libraries, catalogs, and knowledge bases.",
+  "settings": {
+    "brand": {
+      "title": "Branding Related",
+      "logo_url": {
+        "label": "Bright Logo Image",
+        "info": "Suggested size for website bright color logo is 300x80"
+      },
+      "dark_logo_url": {
+        "label": "Dark Logo Image",
+        "info": "Suggested size for website dark logo is 300x80"
+      }
+    },
+    "contact": {
+      "title": "contact information",
+      "contact_info": {
+        "label": "Contact address/phone number",
+        "info": "Multi line text, can be filled in with contact address, phone number and other information"
+      }
+    },
+    "header": {
+      "title": "Top navigation bar",
+      "header_bg_color": {
+        "label": "Top navigation bar background color"
+      },
+      "header_text_color": {
+        "label": "Top navigation bar text color"
+      },
+      "header_menu_html": {
+        "label": "Top navigation bar",
+        "info": "Head HTML configuration, navigation bar link can be filled in"
+      }
+    },
+    "footer": {
+      "title": "At the bottom of the website",
+      "footer_bg_color": {
+        "label": "Bottom background color",
+        "info": "Suggest using a dark background, such as # 181a2a"
+      },
+      "footer_text_color": {
+        "label": "Bottom text color",
+        "info": "Suggest using light colored text, such as # e5e7eb"
+      },
+      "footer_description": {
+        "label": "description",
+        "info": "For example, a sentence describing the philosophy of a company or product"
+      },
+      "copyright": {
+        "label": "Copyright Information",
+        "info": "For example: Copyright owned by a certain company"
+      },
+      "icp_beian": {
+        "label": "Record number"
+      },
+      "nav_links": {
+        "label": "Bottom navigation bar",
+        "info": "Multi line text, navigation bar link can be filled in"
+      }
+    }
+  }
+}

@@ -1,0 +1,98 @@
+@import "./components/tiny_slider.css";
+
+.first-section {
+  @apply mt-[74px];
+}
+
+.avatar {
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-image: url("../images/demos/video/avatar-01.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+.theme-switcher {
+  @apply shadow p-1 bg-slate-900 relative cursor-pointer flex items-center justify-center rounded-full h-8 w-[60px] text-amber-600;
+  input.theme-controller {
+    @apply hidden;
+  }
+  .theme-switcher__sun,
+  .theme-switcher__moon {
+    @apply z-1 size-8 flex items-center justify-center;
+  }
+  .theme-switcher__sun {
+    @apply -ml-[1px];
+  }
+
+  .theme-switcher__moon {
+    @apply ml-[4px];
+  }
+
+  .theme-switcher__circle {
+    @apply absolute transition-all duration-300 bg-white size-7 rounded-full top-[2px] left-[2px];
+  }
+
+  &:has(.theme-controller[value="dark"]:checked) {
+    @apply bg-slate-50;
+    .theme-switcher__circle {
+      @apply left-[30px] bg-slate-900;
+    }
+  }
+}
+
+#topnav {
+  position: fixed;
+  inset-inline-start: 0px;
+  inset-inline-end: 0px;
+  top: 0;
+  z-index: 999;
+  border-width: 0px;
+  background-color: transparent;
+  transition-property: all;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#topnav .logo:where([dir="ltr"], [dir="ltr"] *) {
+  float: left !important;
+}
+
+#topnav .logo {
+  --tw-text-opacity: 1 !important;
+}
+
+.search-form-gradient {
+  background: linear-gradient(white, white) padding-box, 
+              linear-gradient(to right, var(--color-primary), #a855f7, #ec4899) border-box !important;
+  border: 1.5px solid transparent !important;
+}
+
+:where([data-theme=dark] .search-form-gradient) {
+  background: linear-gradient(#1f2937, #1f2937) padding-box, 
+              linear-gradient(to right, var(--color-primary), #a855f7, #ec4899) border-box !important;
+}
+
+.main-gradient-bg {
+  background-image: linear-gradient(180deg, 
+    color-mix(in oklab, var(--color-primary) 8%, transparent) 0%, 
+    color-mix(in oklab, #a855f7 8%, transparent) 30%, 
+    color-mix(in oklab, #ec4899 8%, transparent) 60%, 
+    transparent 100%
+  );
+  background-size: 100% 1000px;
+  background-repeat: no-repeat;
+}
+
+.glass-card {
+  @apply bg-white/40 dark:bg-gray-800/40 backdrop-blur-xl border border-white/50 dark:border-gray-700/50 shadow-lg shadow-black/5 transition-all duration-300;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+}
+.glass-card:hover {
+  @apply bg-white/60 dark:bg-gray-800/60 border-white/80 dark:border-gray-600/80;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}

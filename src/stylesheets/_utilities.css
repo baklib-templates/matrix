@@ -1,0 +1,122 @@
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 540px) {
+  .container {
+      max-width: 540px;
+  }
+}
+
+@media (min-width: 640px) {
+  .container {
+      max-width: 640px;
+      padding-left: 1rem;
+      padding-right: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+      max-width: 768px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+      max-width: 992px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+      max-width: 1024px;
+      padding-left: 45px;
+      padding-right: 45px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+      max-width: 1280px;
+      padding-left: 5rem;
+      padding-right: 5rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+      max-width: 1536px;
+      padding-right: 5rem;
+      padding-left: 5rem;
+  }
+}
+
+/* ----------------- */
+
+/* 侧边栏 */
+.menu {
+  --menu-active-fg: var(--color-primary);
+  --menu-active-bg: color-mix(in oklab, var(--color-primary) 20%, transparent);
+
+  :where(li > details > summary), :where(li > .menu-dropdown-toggle) {
+    &:after {
+      rotate: 135deg;
+    }
+  }
+  :where(li > details[open] > summary), :where(li > .menu-dropdown-toggle) {
+    &:after {
+      rotate: 225deg;
+    }
+  }
+  summary.menu-active,
+  summary:has(.menu-active) {
+    @apply text-primary;
+  }
+}
+
+/* 搜索块高亮 */
+.search-highlight-block {
+  b {
+    @apply text-primary;
+  }
+}
+
+/* page内容 */
+#page-content.ProseMirror a {
+  word-break: break-all;
+  @apply text-primary;
+}
+
+#page-content.ProseMirror .table-container {
+  @apply max-w-full overflow-x-auto;
+}
+
+#page-content.ProseMirror code {
+  @apply text-sm;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+[x-cloak] {
+  display: none;
+}
+
+/* turbo 加载进度条 */
+.turbo-progress-bar {
+  height: 5px;
+  background-color: green;
+}
+
+input, textarea, select {
+  @apply focus:outline-none;
+}
+
+/* ----------------- */

@@ -1,0 +1,27 @@
+<!doctype html>
+<html
+  lang="{{ site.language }}"
+  class="scroll-smooth"
+  data-controller="theme">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="turbo-prefetch" content="false">
+    {% meta_tags %}
+    {{ 'javascripts/application.js' | asset_url | script_tag: defer: true, data-turbo-track: 'reload' }}
+    {{ 'stylesheets/application.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
+    {{ 'fonts/remixicon.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
+
+    {% assign head_html = site.settings.head_html | presence %}
+    {% if head_html %}
+      <!-- start head_html -->
+      {{ head_html }}
+      <!-- end head_html -->
+    {% endif %}
+  </head>
+  <body class="grid grid-rows-[auto_1fr_auto] min-h-screen" id='js-body'>
+    {% render 'header' %}
+    {{ content_for_layout }}
+    {% render 'footer' %}
+  </body>
+</html>

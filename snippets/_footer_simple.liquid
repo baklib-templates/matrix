@@ -1,0 +1,35 @@
+{% assign dark_logo = site.settings.dark_logo_url %}
+{% assign icp_beian = site.settings.icp_beian | presence %}
+
+<footer class="">
+  <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      {% render 'breadcrumb'
+        , breadcrumb: page.breadcrumb %}
+    </div>
+
+    <div class="text-center">
+      <p class="mb-2">
+        {% if site.settings.footer_description != blank %}
+          {{ site.settings.footer_description }}
+        {% else %}
+          {{ 'snippets.footer.default_description' | t }}
+        {% endif %}
+      </p>
+      <p class="text-sm mb-4">
+        &copy; {{ now | date: '%Y' }} {{ site.settings.copyright }}. All rights reserved.
+        <a
+          href="https://beian.miit.gov.cn/"
+          target="_blank"
+          class="text-indigo-400 hover:text-indigo-300">{{ icp_beian }}</a>
+      </p>
+      <p class="text-xs text-gray-500">
+        {{ 'snippets.footer.powered_by_prefix' | t }}
+        <a href="https://www.baklib.com" target="_blank">
+          <span class="font-semibold text-indigo-500">Baklib</span>
+        </a>
+        {{ 'snippets.footer.powered_by_suffix' | t }}
+      </p>
+    </div>
+  </div>
+</footer>

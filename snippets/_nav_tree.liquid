@@ -1,0 +1,27 @@
+{%# locals:(nav_tree:, depth: 0, class: '') %}
+{% unless depth %}
+  {% assign depth = 0 %}
+{% endunless %}
+{% if depth == 0 %}
+  <ul class="menu p-0 w-full {{ class }}" id="nav-tree" data-controller="nav-tree" data-nav-tree-active-class="menu-active">
+{% else %}
+  <ul>
+{% endif %}
+  {% for tree in nav_tree %}
+    {% if tree.children %}
+      <li class='mt-1'>
+        <details>
+          <summary data-nav-tree-target="item"><a href="{{ tree.path }}" class=''>{{ tree.link_text }}</a></summary>
+          {% assign newDepth = depth | plus: 1 %}
+          {% render 'nav_tree', nav_tree: tree.children, depth: newDepth %}
+        </details>
+      </li>
+    {% else %}
+      <li class='mt-1'>
+        <summary>
+          <a data-nav-tree-target="item" href="{{ tree.path }}">{{ tree.link_text }}</a>
+        </summary>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>

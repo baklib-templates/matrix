@@ -1,0 +1,15 @@
+{% assign icon_url = page.settings.logo %}
+{% if page.settings.logo_url %}
+  {% assign icon_url = page.settings.logo_url %}
+{% elsif page.settings.icon %}
+  {% assign icon_url = page.settings.icon %}
+{% elsif page.settings.icon_url %}
+  {% assign icon_url = page.settings.icon_url %}
+{% endif %}
+
+{% if icon_url %}
+  <img
+    src="{{ icon_url }}"
+    alt="{{ page.link_text }}"
+    class="size-6 rounded-full bg-gray-50 outline-2 outline-white dark:bg-gray-800 dark:outline-gray-900" />
+{% endif %}

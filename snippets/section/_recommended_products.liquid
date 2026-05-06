@@ -1,0 +1,78 @@
+
+{% query featured_pages from site.pages %}
+  {
+    "where": {
+      "template_name_eq": "page",
+      "settings.tags_array_cont_any": ["推荐","Featured","Recommended","featured","recommended"]
+    }
+  }
+{% endquery %}
+
+
+{% assign featured_pages_size = featured_pages | size %}
+
+{% if featured_pages_size > 0 %}
+  <section class="mb-12" data-aos="fade-up">
+    <div class="flex items-center justify-between mb-8">
+      <div class="flex items-center space-x-3">
+        <div class="w-2 h-8 bg-primary rounded-full"></div>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
+          {{ 'templates.index.featured_products_title' | t }}
+        </h2>
+      </div>
+      <a href="{{ site.index_path }}" class="group flex items-center text-sm font-semibold text-primary hover:text-primary-focus transition-colors">
+        <span>{{ 'templates.index.show_all' | t }}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+    
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+      {% for item in featured_pages %}
+        {% assign icon_url = item.settings.icon | default: item.settings.icon_url | default: item.settings.logo | default: item.settings.logo_url %}
+        <a href="{{ item.path }}" class="group relative glass-card rounded-2xl p-6 hover:-translate-y-1">
+          <div class="flex items-start space-x-5">
+            <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center border border-slate-100 group-hover:bg-primary/5 group-hover:border-primary/20 transition-all duration-300">
+              {% if icon_url %}
+                <img src="{{ icon_url }}" class="w-10 h-10 object-contain p-1" alt="{{ item.link_text }}">
+              {% else %}
+                <span class="text-3xl grayscale group-hover:grayscale-0 transition-all">🚀</span>
+              {% endif %}
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between mb-1">
+                <h3 class="text-lg font-bold text-slate-900 group-hover:text-primary transition-colors truncate">
+                  {{ item.link_text }}
+                </h3>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-300 group-hover:text-primary opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 group-hover:translate-x-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </div>
+              <p class="text-sm text-slate-500 line-clamp-2 leading-relaxed">
+                {{ item.settings.description | default: "Explore our premium product offerings and detailed documentation." }}
+              </p>
+              
+              {% if item.settings.tags %}
+                <div class="mt-4 flex flex-wrap gap-2">
+                  {% for tag in item.settings.tags | limit: 2 %}
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+                      {{ tag.name }}
+                    </span>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+          
+          {% comment %} Subtle background decoration {% endcomment %}
+          <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-10 transition-opacity">
+            <svg class="w-16 h-16 text-primary" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+            </svg>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

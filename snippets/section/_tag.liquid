@@ -1,0 +1,10 @@
+{% if tag %}
+  <a
+    href="{{ tag.path }}"
+    class="px-2 py-1 text-sm rounded-full hover:underline"
+    style="
+      background-color: hsl({{ tag.color_hls[0] }}, {{ tag.color_hls[1] }}%, 95%);
+      color: {{ tag.color }};
+    ">
+    # {{ tag.name }}</a>
+{% endif %}
